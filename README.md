@@ -4,7 +4,7 @@ This is a simple repo for version control and to keep us organized/make it easie
 
 I made a few example files in case you want to poke around/play with stuff
 
-Once we get the main file structure down all the work should be done on a dev branch and then pull requested to main, which I can merge as they come in
+Once we get the main file structure down all the work should be done on a dev branch and then pull requested to main, which can then be merged onto main assuming there are no conflicts (project this simple, there shouldn't be)
 
 I can go over things in more detail during our meeting, whenever we have it, if people need
 
