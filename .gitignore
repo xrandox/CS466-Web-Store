@@ -1,0 +1,3 @@
+# ignores things we dont want git to keep track of
+# in this case, creds.php as you could leak your credentials otherwise (not really a huge deal if someone does, but makes life easier)
+creds.php

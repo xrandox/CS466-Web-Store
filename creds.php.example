@@ -1,0 +1,8 @@
+<?php
+//this file includes various credentials needed for db access and repeated variables
+//to use, after cloning repo just make a copy without the .example and fill in your credentials
+	$user = "yourZID";
+	$pass = "yourMariaDBPassword";
+	$dsn = "mysql:host=courses;dbname=yourZID";
+    $pdo = new PDO($dsn, $user, $pass);
+?>
