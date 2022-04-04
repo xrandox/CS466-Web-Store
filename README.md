@@ -2,7 +2,7 @@
 
 This is a simple repo for version control and to keep us organized/make it easier to collaborate
 
-I made a few example files in case you want to poke around/play with stuff
+I made a few example files in case you want to poke around/play with stuff. I stuck with php for everything as that's what was used in class
 
 Once we get the main file structure down all the work should be done on a dev branch and then pull requested to main, which can then be merged onto main assuming there are no conflicts (project this simple, there shouldn't be)
 
