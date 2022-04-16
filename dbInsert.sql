@@ -42,7 +42,7 @@ INSERT INTO products (prodName, descr, qtyAvailbile, price)
            15,
            99.99
            );
-INSERT INTO products
+INSERT INTO products (prodName, descr, qtyAvailbile, price)
 	values('American flag',
            'Show your colors with this 3ft x 5ft incredibly durable flag!',
            35,
@@ -104,7 +104,7 @@ INSERT INTO products (prodName, descr, qtyAvailbile, price)
            10,
            249.99
            );
-INSERT INTO products
+INSERT INTO products (prodName, descr, qtyAvailbile, price)
 	values('Dashboard camera',
            'Records up to 12 hours of 720p footage + audio upon incident!',
            30,
@@ -134,3 +134,17 @@ INSERT INTO products (prodName, descr, qtyAvailbile, price)
  * Insert 5 customers
  *
  */ 
+ INSERT INTO users (username, pass, email)
+    values('jdoe44','johniscool@','itsjohnyy@hotmail.com');
+
+ INSERT INTO users (username, pass, email)
+    values('kingdave','appleTree1','bigMan1000@gmail.com');
+
+ INSERT INTO users (username, pass, email)
+    values('saladlover','Savetheplanet00','goodlifeisfun@yahoo.com');
+
+ INSERT INTO users (username, pass, email)
+    values('Warmwinter','strongPassword','watermelon7@hotmail.com');
+
+ INSERT INTO users (username, pass, email)
+    values('test','1234','test1234@gmail.com');
