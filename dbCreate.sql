@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
 	userID INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(255) NOT NULL,
 	pass VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
+	email VARCHAR(255),
 	isEmployee BOOLEAN DEFAULT 0,
 	isOwner BOOLEAN DEFAULT 0,
 	/*billing/shipping can be left out, just added them in case we want to save info down the line*/
