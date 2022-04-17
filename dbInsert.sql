@@ -137,16 +137,16 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
  INSERT INTO users (username, pass, email)
     values('jdoe44','johniscool@', 'johnboy@gmail.com');
 
- INSERT INTO users (username, pass)
+ INSERT INTO users (username, pass, email)
     values('kingdave','appleTree1', 'kingdavi2000@gmail.com');
 
- INSERT INTO users (username, pass)
+ INSERT INTO users (username, pass, email)
     values('saladlover','Savetheplanet00', 'fruitflies@gmail.com');
 
- INSERT INTO users (username, pass)
+ INSERT INTO users (username, pass, email)
     values('Warmwinter','strongPassword', 'warmW@gmail.com');
 
- INSERT INTO users (username, pass)
+ INSERT INTO users (username, pass, email)
     values('test','1234', 'test@yahoo.com');
 
 --Insert Extra 2 for employee/owner testing---
