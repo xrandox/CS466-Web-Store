@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 /*shopping cart table - tracks whats in shopping cart, cleared after an order is submitted*/
-CREATE TABLE IF NOT EXISTS shoppingCart (
+CREATE TABLE IF NOT EXISTS shoppingcart (
 	userID INT NOT NULL,
 	prodID INT NOT NULL,
 	qty INT NOT NULL DEFAULT 0,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 /*order products table - keeps track of all the products + their quantity in an order*/
-CREATE TABLE IF NOT EXISTS orderProducts (
+CREATE TABLE IF NOT EXISTS orderproducts (
 	orderID INT NOT NULL,
 	prodID INT NOT NULL,
 	qty INT NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS orderProducts (
 );
 
 /*order info table - holds shipping and billing info for an order*/
-CREATE TABLE IF NOT EXISTS orderInfo (
+CREATE TABLE IF NOT EXISTS orderinfo (
 	infoID INT NOT NULL AUTO_INCREMENT,
 	recipientName VARCHAR(255) NOT NULL,
 	street VARCHAR(255) NOT NULL,
