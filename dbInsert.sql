@@ -134,27 +134,27 @@ INSERT INTO products (prodName, descr, qtyAvailbile, price)
  * Insert 5 customers
  *
  */ 
- INSERT INTO users (username, pass)
-    values('jdoe44','johniscool@');
+ INSERT INTO users (username, pass, email)
+    values('jdoe44','johniscool@', 'johnboy@gmail.com');
 
  INSERT INTO users (username, pass)
-    values('kingdave','appleTree1');
+    values('kingdave','appleTree1', 'kingdavi2000@gmail.com');
 
  INSERT INTO users (username, pass)
-    values('saladlover','Savetheplanet00');
+    values('saladlover','Savetheplanet00', 'fruitflies@gmail.com');
 
  INSERT INTO users (username, pass)
-    values('Warmwinter','strongPassword');
+    values('Warmwinter','strongPassword', 'warmW@gmail.com');
 
  INSERT INTO users (username, pass)
-    values('test','1234');
+    values('test','1234', 'test@yahoo.com');
 
 --Insert Extra 2 for employee/owner testing---
- INSERT INTO users (username, pass, isEmployee)
-    values('employee','1234', 1);
+ INSERT INTO users (username, pass, email, isEmployee)
+    values('employee','1234', 'employee@hotmail.com', 1);
 
- INSERT INTO users (username, pass, isOwner)
-    values('owner','1234', 1);
+ INSERT INTO users (username, pass, email, isOwner)
+    values('owner','1234', 'owner@hotmail.com', 1);
 
 
 
