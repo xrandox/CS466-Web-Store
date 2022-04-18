@@ -67,12 +67,12 @@
         if($_SESSION['shippingIsBilling'])
         {
             //try to update with billing info
-            $stmt = insert($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
+            $stmt = execute($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
             //on success
             if($stmt)
             {
                 //try update the info in the orders table
-                $stmt = insert($pdo, "UPDATE orders SET billingID=?, shippingID=?, total=? WHERE orderID=?", [$shipID, $shipID, $total, $oid]);
+                $stmt = execute($pdo, "UPDATE orders SET billingID=?, shippingID=?, total=? WHERE orderID=?", [$shipID, $shipID, $total, $oid]);
                 //on success
                 if($stmt)
                 {
@@ -91,13 +91,13 @@
             $zip = $_POST['zip'];
             
             //insert billing address
-            $stmt = insert($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
+            $stmt = execute($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
             //get the infoID for the billing info
             $billingID = getOrderID($pdo, $name);
             //try to update the card information
-            $stmt2 = insert($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
+            $stmt2 = execute($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
 
-            $stmt3 = insert($pdo, "UPDATE orders SET billingID=?, shippingID=?, total=?, orderStatus=1 WHERE orderID=?", [$shipID, $shipID, $total, $oid]);
+            $stmt3 = execute($pdo, "UPDATE orders SET billingID=?, shippingID=?, total=?, orderStatus=1 WHERE orderID=?", [$shipID, $shipID, $total, $oid]);
             //on success
             if($stmt3)
             {
