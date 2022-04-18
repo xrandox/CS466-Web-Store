@@ -9,8 +9,8 @@ VALUES ("Mystery Box", "N/A", 5, 5.00),
 ("Mystery Box 2", "N/A", 5, 5.00);
 
 /*Users get added as they create accounts*/
-INSERT INTO users (username, pass, email)
-VALUES ("user1234", "supersecretpass123", "fakeemail@gmail.com");
+INSERT INTO users (username, pass)
+VALUES ("user1234", "supersecretpass123");
 
 /*Products + QTY get added to users cart as they shop*/
 REPLACE INTO shoppingcart 

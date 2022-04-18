@@ -1,6 +1,7 @@
 <?php
 //this file includes various credentials needed for db access and repeated variables
 //to use, after cloning repo just make a copy without the .example and fill in your credentials
+//if you want to test with WAMP, you'll be using user="root", pass="", host=localhost, dbname=WhateverYouNamedItInMySQLWorkbench
 	$user = "yourZID";
 	$pass = "yourMariaDBPassword";
 	$dsn = "mysql:host=courses;dbname=yourZID";

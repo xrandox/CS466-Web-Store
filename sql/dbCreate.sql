@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
 	userID INT NOT NULL AUTO_INCREMENT,
 	username VARCHAR(255) NOT NULL,
 	pass VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
+	email VARCHAR(255),
 	isEmployee BOOLEAN DEFAULT 0,
 	isOwner BOOLEAN DEFAULT 0,
 	/*billing/shipping can be left out, just added them in case we want to save info down the line*/
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 /*shopping cart table - tracks whats in shopping cart, cleared after an order is submitted*/
-CREATE TABLE IF NOT EXISTS shoppingCart (
+CREATE TABLE IF NOT EXISTS shoppingcart (
 	userID INT NOT NULL,
 	prodID INT NOT NULL,
 	qty INT NOT NULL DEFAULT 0,
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS orders (
 	total DOUBLE(10,2),
     notes TEXT,
     shippingNumber INT,
-	status TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
+	orderStatus TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
 	PRIMARY KEY (orderID),
 	FOREIGN KEY (userID) REFERENCES users (userID),
 	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 
 /*order products table - keeps track of all the products + their quantity in an order*/
-CREATE TABLE IF NOT EXISTS orderProducts (
+CREATE TABLE IF NOT EXISTS orderproducts (
 	orderID INT NOT NULL,
 	prodID INT NOT NULL,
 	qty INT NOT NULL,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS orderProducts (
 );
 
 /*order info table - holds shipping and billing info for an order*/
-CREATE TABLE IF NOT EXISTS orderInfo (
+CREATE TABLE IF NOT EXISTS orderinfo (
 	infoID INT NOT NULL AUTO_INCREMENT,
 	recipientName VARCHAR(255) NOT NULL,
 	street VARCHAR(255) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS orderInfo (
 	cardNumber VARCHAR(19),
 	cvc VARCHAR(4),
 	expMon VARCHAR(2),
-	expYear VARCHAR(2),
+	expYear VARCHAR(4),
 	PRIMARY KEY (infoID),
 	/* Make sure we get all billing info if it is billing*/
 	CONSTRAINT checkBilling CHECK ( NOT (isBilling AND (cardNumber IS NULL OR 
