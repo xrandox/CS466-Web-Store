@@ -42,7 +42,7 @@
             clearCart($pdo, $_SESSION['uid']);
         ?>
 
-        <a href="./productList.php"><button type="button">Back to Shopping</button><a/><br>
+        <a href="../productList.php"><button type="button">Back to Shopping</button><a/><br>
     </body>
 
 </html>
