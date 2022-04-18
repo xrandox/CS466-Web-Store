@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS orders (
 	total DOUBLE(10,2),
     notes TEXT,
     shippingNumber INT,
-	status TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
+	orderStatus TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
 	PRIMARY KEY (orderID),
 	FOREIGN KEY (userID) REFERENCES users (userID),
 	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS orderinfo (
 	cardNumber VARCHAR(19),
 	cvc VARCHAR(4),
 	expMon VARCHAR(2),
-	expYear VARCHAR(2),
+	expYear VARCHAR(4),
 	PRIMARY KEY (infoID),
 	/* Make sure we get all billing info if it is billing*/
 	CONSTRAINT checkBilling CHECK ( NOT (isBilling AND (cardNumber IS NULL OR 
