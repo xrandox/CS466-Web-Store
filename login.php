@@ -3,7 +3,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="./util/style.php">
         <title>Web Store - Login</title>
     </head>
 
