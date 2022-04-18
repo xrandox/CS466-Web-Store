@@ -1,7 +1,7 @@
 <?php
-    require_once("creds.php");
-    require_once("sessionStart.php");
-    require_once("sqlFunc.php");
+    require_once("../util/creds.php");
+    require_once("../util/sessionStart.php");
+    require_once("../util/sqlFunc.php");
 
 
     //array of state abbreviations for address
@@ -20,7 +20,7 @@
         $uid = $_SESSION['uid'];
 
         //try to create order in DB
-        $stmt = execute($pdo, "INSERT INTO orders (userID) VALUES (?)", [$uid]);
+        $stmt = insert($pdo, "INSERT INTO orders (userID) VALUES (?)", [$uid]);
 
         //if success
         if ($stmt)
@@ -35,7 +35,7 @@
             $oid = $_SESSION['oid'];
 
             //add shopping cart to orderproducts table
-            $stmt = execute($pdo, "INSERT INTO orderproducts (prodID, qty, orderID) SELECT prodID, qty, ? FROM shoppingcart WHERE userID=? and qty > 0", [$oid, $uid]);
+            $stmt = insert($pdo, "INSERT INTO orderproducts (prodID, qty, orderID) SELECT prodID, qty, ? FROM shoppingcart WHERE userID=? and qty > 0", [$oid, $uid]);
 
             if($stmt)
             {

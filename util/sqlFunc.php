@@ -1,6 +1,6 @@
 <?php
     //executes $sql with $varArray, returns true for success
-    function execute($pdo, $sql, $varArray)
+    function insert($pdo, $sql, $varArray)
     {
         try 
         {

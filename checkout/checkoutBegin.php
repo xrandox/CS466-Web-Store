@@ -1,9 +1,9 @@
 <!--checkout page - confirm purchase-->
 <?php
-    require_once("creds.php");
-    require_once("sessionStart.php");
-    require_once("checkoutUtilities.php");
-    require_once("sqlFunc.php");
+    require_once("../util/creds.php");
+    require_once("../util/sessionStart.php");
+    require_once("./checkoutUtilities.php");
+    require_once("../util/sqlFunc.php");
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
 
     <body>
         <h1>Checkout<h1>
-        <br>Check out with the following items?
+        
         <?php
             $uid = $_SESSION['uid'];
             
@@ -25,6 +25,16 @@
 
 
             $products = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID=? AND qty>0", [$uid]);
+            if ($products == []) 
+            {
+                echo "Your shopping cart is empty<br>
+                
+                <a href='../productList.php'><button type='button'>Back to Shopping</button><a/>";
+                return;
+            }
+
+            echo "<br>Check out with the following items?";
+
             foreach ($products as $product)
             {
                 echo "<br><br>";
@@ -41,7 +51,7 @@
         ?>
 
         <form action="" method="post">
-            <a href="./productList.php"><button type="button">Back to Shopping</button><a/> 
+            <a href="../productList.php"><button type="button">Back to Shopping</button><a/> 
             <input type="submit" name="Checkout" value="Checkout"/>
         </form>
     </body>

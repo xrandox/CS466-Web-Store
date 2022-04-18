@@ -1,9 +1,9 @@
 <!--checkout page - shipping info-->
 <?php
-    require_once("creds.php");
-    require_once("sessionStart.php");
-    require_once("checkoutUtilities.php");
-    require_once("sqlFunc.php");
+    require_once("../util/creds.php");
+    require_once("../util/sessionStart.php");
+    require_once("./checkoutUtilities.php");
+    require_once("../util/sqlFunc.php");
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +60,7 @@
         if ($isBilling) { $_SESSION['shippingIsBilling'] = true; }
 
         //insert statement
-        $stmt = execute($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
+        $stmt = insert($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
         //on success
         if ($stmt)
         {

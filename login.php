@@ -3,7 +3,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="./util/style.php">
+        <link rel="stylesheet" href="style.php">
         <title>Web Store - Login</title>
     </head>
 
@@ -23,9 +23,9 @@
 </html>
 
 <?php
-    require("creds.php");
-    require("sqlFunc.php");
-    require_once("sessionStart.php");
+    require_once("./util/creds.php");
+    require_once("./util/sqlFunc.php");
+    require_once("./util/sessionStart.php");
 
     //login code
     if (isset($_POST['Login'])) 
@@ -67,14 +67,14 @@
         if($result == false)
         {
             //try to insert
-            $stmt = execute($pdo, "INSERT INTO users (username, pass) VALUES (?,?)", [$username, $pass]);
+            $stmt = insert($pdo, "INSERT INTO users (username, pass) VALUES (?,?)", [$username, $pass]);
 
             //if success
             if($stmt)
             {
                 echo("Registered successfully!");
                 $result = fetch($pdo, "SELECT * FROM users WHERE username=?", [$username]);
-                
+
 
                 //get userid session variable
                 $_SESSION['uid'] = $result[userID];
