@@ -9,10 +9,10 @@
     $uid = $_SESSION['uid'];
 
     //priv check
-    $hasPriviledge = privCheck($pdo, $uid, 2);
-    if (!$hasPriviledge)
+    $hasPriv = privCheck($pdo, $uid, 2);
+    if (!$hasPriv)
     {
-        echo "You don't have the priviledges to view this page. Returning to user profile in 3 seconds";
+        echo "You don't have the privileges to view this page. Returning to user profile in 3 seconds";
         header("refresh: 3; ./userProfile.php");
         exit;
     }
