@@ -13,9 +13,9 @@
 <body>
 
 <?php
-    require_once("./util/creds.php");
-    require_once("./util/sessionStart.php");
-    require_once("./util/userUtil.php");
+    require_once("./util/creds.php"); //$pdo
+    require_once("./util/sessionStart.php"); //$_SESSION['uid']
+    require_once("./util/userUtil.php"); //privCheck func
     //require_once("./util/sqlFunc.php");
 
     #Remove this, i used this for testing, but the userID would be passed
