@@ -5,7 +5,7 @@
     require_once("./sqlFunc.php");
 
     //checks if user $uid has $level and returns a boolean, true if they do, false if not
-    //$level 0 = normal user, 1 = employee, 2 = owner
+    //$level 0 = normal user, 1 = employee or owner, 2 = owner
     function privCheck($pdo, $uid, $level)
     {
         $userInfo = fetch($pdo, "SELECT * FROM users WHERE userID=?", [$uid]);
