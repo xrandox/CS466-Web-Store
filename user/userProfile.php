@@ -1,8 +1,8 @@
 <!--user page-->
 <?php
-    require_once("./util/creds.php");
-    require_once("./util/sessionStart.php");
-    require_once("./util/sqlFunc.php");
+    require_once("../util/creds.php");
+    require_once("../util/sessionStart.php");
+    require_once("../util/sqlFunc.php");
 
     $uid = $_SESSION['uid'];
 
