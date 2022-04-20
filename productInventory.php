@@ -13,27 +13,23 @@
 <body>
 
 <?php
+    require_once("./util/userUtil.php"); //privCheck func
     require_once("./util/creds.php"); //$pdo
     require_once("./util/sessionStart.php"); //$_SESSION['uid']
-    require_once("./util/userUtil.php"); //privCheck func
-    //require_once("./util/sqlFunc.php");
+    require_once("./util/sqlFunc.php");
 
     #Remove this, i used this for testing, but the userID would be passed
-    $uid = 7;
-    $_SESSION['uid'] = $uid;
+    $wuid = 7;
+    $_SESSION['uid'] = $wuid;
 
+    #privCheck used from userUtil.php
     $hasPriv = privCheck($pdo, $_SESSION['uid'], 1);
 
     if($hasPriv)
     {
-        //alternatively, remove try-catch and use fetchAll from sqlFunc directly into the foreach (fetchAll has its own built in try-catch)
-        //$rows = fetchAll($pdo, "SELECT * FROM products", []);
-        //foreach($rows as $product) { ... }
-        try 
-        {
-            $rs = $pdo->query("SELECT * FROM products;");
-            $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
-            foreach($rows as $product)
+        #used fetchAll from sqlFunc.php
+        $rows = fetchAll($pdo, "SELECT * FROM products", []);
+        foreach($rows as $product)
             {
             ?>
                 <!-- Create a div foreach product-->
@@ -49,15 +45,7 @@
             }
             ?>
             </body>
-            </html>
-        <?php
-        }
-        catch(PDOexception $e) {
-            echo "Connection was not established to database, with reason: " . $e->getMessage();
-        }
-        ?>
-        
-        
+            </html>    
         <?php
     }
     else
