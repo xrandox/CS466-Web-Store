@@ -1,8 +1,9 @@
 <!--checkout complete-->
+<!--This is the final checkout page which shows a confirmation along with various other information about the order-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
-    require_once("./checkoutUtilities.php");
+    require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
 ?>
 
