@@ -60,7 +60,7 @@
         if ($isBilling) { $_SESSION['shippingIsBilling'] = true; }
 
         //insert statement
-        $stmt = insert($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
+        $stmt = execute($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
         //on success
         if ($stmt)
         {
