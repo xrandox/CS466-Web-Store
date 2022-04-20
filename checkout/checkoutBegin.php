@@ -1,8 +1,9 @@
 <!--checkout page - confirm purchase-->
+<!--This page is the first checkout page that prompts the user to confirm they want to check out with the products in their cart-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
-    require_once("./checkoutUtilities.php");
+    require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
 ?>
 

@@ -1,8 +1,9 @@
 <!--checkout page - billing info-->
+<!--This is the third checkout page where the user enters their billing info-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
-    require_once("./checkoutUtilities.php");
+    require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
 ?>
 
