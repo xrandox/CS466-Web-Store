@@ -6,3 +6,7 @@
 h1 {
     color: orange;
 }
+
+.hidden {
+  display: none;  
+}

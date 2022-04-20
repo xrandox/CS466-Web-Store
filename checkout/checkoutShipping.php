@@ -1,8 +1,9 @@
 <!--checkout page - shipping info-->
+<!--This is the second checkout page where the user adds their shipping info-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
-    require_once("./checkoutUtilities.php");
+    require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
 ?>
 
