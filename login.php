@@ -67,7 +67,7 @@
         if($result == false)
         {
             //try to insert
-            $stmt = insert($pdo, "INSERT INTO users (username, pass) VALUES (?,?)", [$username, $pass]);
+            $stmt = execute($pdo, "INSERT INTO users (username, pass) VALUES (?,?)", [$username, $pass]);
 
             //if success
             if($stmt)
