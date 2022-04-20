@@ -24,8 +24,8 @@
             else return false;
         }
 
-        //if not checking for owner or employee, everyone is user
-        return true;
+        //if not any of the above, assume its false to prevent access
+        return false;
     }
 
     //converts the status int into a readable string
