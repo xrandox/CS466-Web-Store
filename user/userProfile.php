@@ -61,7 +61,7 @@
             if ($isOwner)
             {
                 echo "<h3>Owner Only:<h3>
-                <a href='./productInventory.php'><button type='button'>Product Inventory</button><a/><br>
+                <a href='../productInventory.php'><button type='button'>Product Inventory</button><a/><br>
                 <a href='./allOrderHistory.php'><button type='button'>View All Orders</button><a/><br>";
             }
 
