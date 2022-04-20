@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS users (
 	billingID INT,
 	shippingID INT,
 	PRIMARY KEY (userID),
-	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
-	FOREIGN KEY (shippingID) REFERENCES orderInfo (infoID)
+	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
+	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID)
 );
 
 /*products table - holds all product info + inventory*/
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS orders (
 	orderStatus TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
 	PRIMARY KEY (orderID),
 	FOREIGN KEY (userID) REFERENCES users (userID),
-	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
-	FOREIGN KEY (shippingID) REFERENCES orderInfo (infoID),
+	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
+	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID),
     /* check and make sure someone doesnt manage to checkout without creating a billing/shipping ID for order */
     CONSTRAINT preventSuccess CHECK ( NOT (orderStatus > 0 AND billingID IS NULL OR shippingID IS NULL)),
     /* check and make sure product is not shipped without giving shipping number*/
