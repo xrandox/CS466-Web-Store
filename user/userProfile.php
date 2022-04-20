@@ -28,11 +28,11 @@
 
     <head>
         <link rel="stylesheet" href="style.php">
-        <title>Web Store - User Page</title>
+        <title>Web Store - User Profile</title>
     </head>
 
     <body>
-        <h1>User Page<h1>
+        <h1>User Profile<h1>
         <?php
             echo "Username: $username<br>Email: $email<br>";
 
