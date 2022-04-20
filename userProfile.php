@@ -1,8 +1,8 @@
 <!--user page-->
 <?php
-    require_once("../util/creds.php");
-    require_once("../util/sessionStart.php");
-    require_once("../util/sqlFunc.php");
+    require_once("./util/creds.php");
+    require_once("./util/sessionStart.php");
+    require_once("./util/sqlFunc.php");
 
     $uid = $_SESSION['uid'];
 
@@ -46,7 +46,7 @@
                         </form><br>";
             }
 
-            echo "<a href='./user/shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
+            echo "<a href='./shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
             
             //if employee, show outstanding orders
             if ($isEmployee || $isOwner)
