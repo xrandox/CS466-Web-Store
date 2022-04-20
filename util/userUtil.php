@@ -1,8 +1,8 @@
 <!--user utilities-->
 <?php
-    require_once("./creds.php");
-    require_once("./sessionStart.php");
-    require_once("./sqlFunc.php");
+    require_once("/creds.php");
+    require_once("/sessionStart.php");
+    require_once("/sqlFunc.php");
 
     //checks if user $uid has $level and returns a boolean, true if they do, false if not
     //$level 0 = normal user, 1 = employee or owner, 2 = owner
