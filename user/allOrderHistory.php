@@ -1,8 +1,10 @@
+<!--all order history page-->
+<!--This page is for the owner to keep track of all orders-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
     require_once("../util/sqlFunc.php");
-    require_once("./userUtil.php");
+    require_once("../util/userUtil.php");
 
     $uid = $_SESSION['uid'];
 
@@ -11,11 +13,12 @@
     if (!$hasPriviledge)
     {
         echo "You don't have the priviledges to view this page. Returning to user profile in 3 seconds";
-        header("refresh: 3; url: ./userProfile.php");
+        header("refresh: 3; ./userProfile.php");
+        exit;
     }
 
     //get all orders
-    $allOrders = fetchAll($pdo, "SELECT * FROM orders WHERE userID=? AND orderStatus>0 ORDER BY orderStatus ASC", [$uid]);
+    $allOrders = fetchAll($pdo, "SELECT * FROM orders WHERE orderStatus>0 ORDER BY orderStatus ASC", []);
 
 ?>
 
@@ -32,8 +35,7 @@
         <?php
             listOrders($allOrders);
         ?>
-
-        <a href='./userProfile.php'><button type='button'>Return to User Profile</button><a/><br>";
+        <a href='./userProfile.php'><button type='button'>Return to User Profile</button><a/><br>
     </body>
 
 </html>

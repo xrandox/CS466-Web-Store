@@ -1,4 +1,5 @@
-<!--user page-->
+<!--user profile page-->
+<!--This page displays the users basic info and links to various other pages-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
@@ -47,6 +48,7 @@
             }
 
             echo "<a href='./shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
+            echo "<a href='./userOrders.php'><button type='button'>View Orders</button><a/><br>";
             
             //if employee, show outstanding orders
             if ($isEmployee || $isOwner)
