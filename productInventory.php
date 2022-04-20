@@ -17,50 +17,46 @@
 
 try{
 
-    require_once("./util/creds.php");
-    require_once("./util/sessionStart.php");
-    
+    #require_once("./util/creds.php");
+    #require_once("./util/sessionStart.php");
+    require_once("./util/userUtil.php");
+
     #Remove this, i used this for testing, but the userID would be passed
     $uid = 7;
     $_SESSION['uid'] = $uid;
 
-    $rs = $pdo->prepare("SELECT * FROM users WHERE userID = ?;");
-    $rs->execute(array($_SESSION["uid"]));
-    $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
-    
-    foreach($rows as $name)
-    {
+    $hasPriv = privCheck($pdo, $_SESSION['uid'], 1);
 
-        if($name['isEmployee'] == 1 or $name['isOwner'] == 1)
+
+    if($hasPriv)
+    {
+        $rs = $pdo->query("SELECT * FROM products;");
+        $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+        <?php
+        foreach($rows as $product)
         {
-            echo "<h3><center>" . "Welcome back " . $name['username'] . "!</h3></center>";
-            $rs = $pdo->query("SELECT * FROM products;");
-            $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <?php
-            foreach($rows as $product)
-            {
-            ?>
-                <!-- Create a div foreach product-->
-                <div class="aProduct"> 
-                <!--Out put the prodName -->
-                <h2><?php echo $product['prodName']?></h2>
-                <!-- Display the price-->
-                <p><?php echo "$" . $product['price']?></p>
-                <!-- Display amount of stock-->
-                <p><?php echo $product['qtyAvailable'] . " in stock"?></p>
-                </div>
-            <?php
-            }
-            ?>
-            </body>
-            </html>
-            <?php
+        ?>
+            <!-- Create a div foreach product-->
+            <div class="aProduct"> 
+            <!--Out put the prodName -->
+            <h2><?php echo $product['prodName']?></h2>
+            <!-- Display the price-->
+            <p><?php echo "$" . $product['price']?></p>
+            <!-- Display amount of stock-->
+            <p><?php echo $product['qtyAvailable'] . " in stock"?></p>
+            </div>
+        <?php
         }
-        else
-        {
-            echo "You dont have permissions to view this!";
-        }
+        ?>
+        </body>
+        </html>
+        <?php
+    }
+    else
+    {
+        echo "You dont have permissions to view this!";
+        header("refresh: 3; ./productList.php");
     }
     
 
