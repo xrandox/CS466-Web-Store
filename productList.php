@@ -38,16 +38,12 @@ foreach($rows as $product)
     <div class="aProduct"> 
     <!--Out put the prodName -->
     <h2><?php echo $product['prodName']?></h2>
-    <?php
-    /* store the prodID in session */
-    $_SESSION['prodID'] = $product['prodID'];
-    ?>
     <!-- Display the price-->
     <p><?php echo "$" . $product['price']?></p>
     <!-- Display amount of stock-->
     <p><?php echo $product['qtyAvailable'] . " in stock"?></p>
     <!-- Displays a button for each product, allowing them to go to productDetails.php-->
-    <a href="./productDetails.php<?php echo "?prodID=" . $_SESSION['prodID']?>"><button type="button">View details</button><a/><br>
+    <a href="./productDetails.php<?php echo "?prodID=" . $product['prodID']?>"><button type="button">View details</button><a/><br>
     </div>
 <?php
 }
