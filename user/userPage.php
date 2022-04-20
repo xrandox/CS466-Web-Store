@@ -19,7 +19,7 @@
     if ($email == "") 
     { 
         $hasEmail = false;
-        $email = "You have not registered an email yet, click on Add Email button below to add an email address";
+        $email = "You have not registered an email yet, you can add an email address below";
     }
 ?>
 
@@ -36,10 +36,14 @@
         <?php
             echo "Username: $username<br>Email: $email<br>";
 
-            //if no email, include button to show email
+            //if no email, include form to add email
             if (!$hasEmail)
             {
-                echo "<a href='./user/addEmail.php'><button type='button'>Add Email</button><a/><br>";
+                echo "  <form action='' method='post'>
+                            Email:
+                            <input type='text' name='email' required/>
+                            <input type='submit' name='addEmail' value='Add Email'/>
+                        </form><br>";
             }
 
             echo "<a href='./user/shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
@@ -63,3 +67,23 @@
     </body>
 
 </html>
+
+<?php
+
+    if(isset($_POST['addEmail']))
+    {
+        //try to update the email
+        $stmt = execute($pdo, "UPDATE users SET email=? WHERE userID=?", [$_POST['email'], $_SESSION['uid']]);
+        
+        if($stmt)
+        {
+            //if success, refresh the page
+            header("refresh: 0");
+        }
+        else
+        {
+            echo "There was a problem adding your email. Contact the owner or try again later";
+        }
+    }
+
+?>
