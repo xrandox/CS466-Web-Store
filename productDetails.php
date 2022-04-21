@@ -45,20 +45,23 @@
 
             <form method="POST">
                 <label for="qtyWanted">Quanty to order: </label>
-                <input type="number" name="qtyWanted" min="0" max="<?php echo $product['qtyAvailable']?>" value='0'/><br><br>
+                <input type="number" name="qtyWanted" min="0" max="<?php echo $product['qtyAvailable']?>"/><br><br>
                 <input type="submit" value="Add to Shopping Cart"/> 
             </form>
-
         </div>
-    <!--
-        
-    -->
+
+        <div>
+            <form action="" method="post">
+                <a href="../productList.php"><button type="button">Return to Shopping</button><a/> 
+            </form>
+        </div>
+
 
         <?php
         $uid = $_SESSION['uid'];
         $pid = $_GET['prodID'];
 
-        if ($_POST["qtyWanted"] > 0)
+        if (isset($_POST["qtyWanted"]))
         {
             $rs = $pdo->prepare("INSERT INTO shoppingcart (userID, prodID, qty) VALUES ( :pu, :pid, :pw );");
             $success = $rs->execute(array(':pu' => $uid,':pid' => $pid, ':pw' => $_POST["qtyWanted"]));
@@ -69,7 +72,7 @@
             }
             else
             {
-                echo 'Error';
+                echo 'Could not add product to the shopping cart.';
             }
         }
         
