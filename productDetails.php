@@ -52,7 +52,7 @@
 
         <div>
             <form action="" method="post">
-                <a href="../productList.php"><button type="button">Return to Shopping</button><a/> 
+                <a href="productList.php"><button type="button">Return to Shopping</button><a/> 
             </form>
         </div>
 
