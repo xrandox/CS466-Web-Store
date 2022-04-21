@@ -68,7 +68,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
            );
 --------------ten-----------------
 INSERT INTO products (prodName, descr, qtyAvailable, price)
-	values('Handhel vaccum',
+	values('Handheld vaccum',
            'Small vaccum for hard to reach areas, lithium ion battery.',
            10,
            24.99
