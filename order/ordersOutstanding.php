@@ -4,8 +4,7 @@
 
     echo $_SESSION['uid'];
 
-    //add employee permission check -- /util/userUtil.php has privCheck() function, reference allOrderHistory for example
-?>
+    //add employee permission check -- check fulfillment for example
 <html>
 <body>
     <style>

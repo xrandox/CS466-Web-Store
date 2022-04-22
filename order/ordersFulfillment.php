@@ -4,9 +4,15 @@
 
     echo $_GET['orderID'];
 
-    //add employee permission check, otherwise people could visit page directly-- /util/userUtil.php has privCheck() function, reference allOrderHistory for example
+    //add employee permission check, otherwise people could visit page directly
+    //dont use privCheck() function
+    //i'm going to add a session variable for permissions that is stored at login, 0 = normal user, 1 = employee, 2 = owner
+    //if (!($_SESSION['permLevel'] > 0)) { kick them off the page...example can be found in allOrderHistory }
 
-    //optionally, you could get rid of the whole try-catch if you want by requiring /util/sqlFunc.php
+
+
+
+    //you could get rid of the whole try-catch below if you want by requiring /util/sqlFunc.php
     //this would be the equivalent to all the code below:
     //require_once("../util/sqlFunc.php");
     //$orders = fetchAll($pdo, "SELECT * FROM orders WHERE orderID =?;", [$_GET["orderID"]]); 
