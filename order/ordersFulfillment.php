@@ -4,6 +4,14 @@
 
     echo $_GET['orderID'];
 
+    //add employee permission check, otherwise people could visit page directly-- /util/userUtil.php has privCheck() function, reference allOrderHistory for example
+
+    //optionally, you could get rid of the whole try-catch if you want by requiring /util/sqlFunc.php
+    //this would be the equivalent to all the code below:
+    //require_once("../util/sqlFunc.php");
+    //$orders = fetchAll($pdo, "SELECT * FROM orders WHERE orderID =?;", [$_GET["orderID"]]); 
+    //$products = fetchAll($pdo, "SELECT * FROM orderproducts WHERE orderID =?;", [$_GET["orderID"]]);
+
     try
         {
             $rs = $pdo->prepare("SELECT * FROM orders WHERE orderID =?;");

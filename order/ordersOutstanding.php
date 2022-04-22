@@ -3,6 +3,8 @@
     require_once("../util/sessionStart.php");
 
     echo $_SESSION['uid'];
+
+    //add employee permission check -- /util/userUtil.php has privCheck() function, reference allOrderHistory for example
 ?>
 <html>
 <body>
@@ -17,6 +19,7 @@
     <?php
         try
         {
+            //recommend changing the query to "SELECT * FROM orders WHERE orderStatus>0" - this limits it to only orders that have actually been placed
             $rs = $pdo->query("SELECT * FROM orders;");
             $orders = $rs->fetchAll(PDO::FETCH_ASSOC);
         }
