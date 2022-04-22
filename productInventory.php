@@ -17,10 +17,6 @@
     require_once("./util/sessionStart.php"); //$_SESSION['uid']
     require_once("./util/sqlFunc.php");
 
-    #Remove this, i used this for testing, but the userID would be passed
-    $wuid = 7;
-    $_SESSION['uid'] = $wuid;
-
     if($_SESSION['permLevel'] == 2)
     {
         #used fetchAll from sqlFunc.php
