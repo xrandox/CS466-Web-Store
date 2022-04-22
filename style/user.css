@@ -1,0 +1,92 @@
+body {
+    background-color: #1a1918;
+}
+
+.container {
+    text-align: center;
+    height: 550px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 40px 35px;
+}
+
+.container * {
+    font-family: 'Consolas';
+    color: #ffffff;
+    outline: none;
+    border: none;
+}
+
+.container h2 {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.container h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.container h4 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.smallcontainer {
+    display: block;
+    text-align: center;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 5px;
+}
+
+.smallcontainer h3 {
+    color: #979494;
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+input {
+    display: block;
+    height: 30px;
+    width: 70%;
+    background-color: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+input[type=submit],button {
+    width: 75%;
+    margin-top: 8px;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+input[type=submit]:hover,button:hover {
+    background-color: #555;
+    color: white;
+}

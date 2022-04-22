@@ -1,5 +1,27 @@
 /*File for the database CREATE scripts*/
 
+/*order info table - holds shipping and billing info for an order*/
+CREATE TABLE IF NOT EXISTS orderinfo (
+	infoID INT NOT NULL AUTO_INCREMENT,
+	recipientName VARCHAR(255) NOT NULL,
+	street VARCHAR(255) NOT NULL,
+	city VARCHAR(18) NOT NULL,
+	stateAbbr VARCHAR(2) NOT NULL,
+	zip VARCHAR(5) NOT NULL,
+	isBilling BOOLEAN DEFAULT 0,
+	cardNumber VARCHAR(19),
+	cvc VARCHAR(4),
+	expMon VARCHAR(2),
+	expYear VARCHAR(4),
+	PRIMARY KEY (infoID),
+	/* Make sure we get all billing info if it is billing*/
+	CONSTRAINT checkBilling CHECK ( NOT (isBilling AND (cardNumber IS NULL OR 
+														cvc IS NULL OR 
+														expMon IS NULL OR 
+														expYear IS NULL)
+                                        )
+                                  )
+);
 /*users table - holds all account info for users + employees/owner*/
 CREATE TABLE IF NOT EXISTS users (
 	userID INT NOT NULL AUTO_INCREMENT,
@@ -12,8 +34,8 @@ CREATE TABLE IF NOT EXISTS users (
 	billingID INT,
 	shippingID INT,
 	PRIMARY KEY (userID),
-	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
-	FOREIGN KEY (shippingID) REFERENCES orderInfo (infoID)
+	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
+	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID)
 );
 
 /*products table - holds all product info + inventory*/
@@ -50,12 +72,12 @@ CREATE TABLE IF NOT EXISTS orders (
 	orderStatus TINYINT DEFAULT 0, /*0 - checkout, 1 - order success, 2 - processing, 3 - shipped*/
 	PRIMARY KEY (orderID),
 	FOREIGN KEY (userID) REFERENCES users (userID),
-	FOREIGN KEY (billingID) REFERENCES orderInfo (infoID),
-	FOREIGN KEY (shippingID) REFERENCES orderInfo (infoID),
+	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
+	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID),
     /* check and make sure someone doesnt manage to checkout without creating a billing/shipping ID for order */
-    CONSTRAINT preventSuccess CHECK ( NOT (status > 0 AND billingID IS NULL OR shippingID IS NULL)),
+    CONSTRAINT preventSuccess CHECK ( NOT (orderStatus > 0 AND billingID IS NULL OR shippingID IS NULL)),
     /* check and make sure product is not shipped without giving shipping number*/
-    CONSTRAINT preventShipping CHECK ( NOT (status > 2 AND shippingNumber IS NULL))
+    CONSTRAINT preventShipping CHECK ( NOT (orderStatus > 2 AND shippingNumber IS NULL))
 );
 
 /*order products table - keeps track of all the products + their quantity in an order*/
@@ -66,27 +88,4 @@ CREATE TABLE IF NOT EXISTS orderproducts (
 	PRIMARY KEY (orderID, prodID),
 	FOREIGN KEY (orderID) REFERENCES orders (orderID),
 	FOREIGN KEY (prodID) REFERENCES products (prodID)
-);
-
-/*order info table - holds shipping and billing info for an order*/
-CREATE TABLE IF NOT EXISTS orderinfo (
-	infoID INT NOT NULL AUTO_INCREMENT,
-	recipientName VARCHAR(255) NOT NULL,
-	street VARCHAR(255) NOT NULL,
-	city VARCHAR(18) NOT NULL,
-	stateAbbr VARCHAR(2) NOT NULL,
-	zip VARCHAR(5) NOT NULL,
-	isBilling BOOLEAN DEFAULT 0,
-	cardNumber VARCHAR(19),
-	cvc VARCHAR(4),
-	expMon VARCHAR(2),
-	expYear VARCHAR(4),
-	PRIMARY KEY (infoID),
-	/* Make sure we get all billing info if it is billing*/
-	CONSTRAINT checkBilling CHECK ( NOT (isBilling AND (cardNumber IS NULL OR 
-														cvc IS NULL OR 
-														expMon IS NULL OR 
-														expYear IS NULL)
-                                        )
-                                  )
 );
