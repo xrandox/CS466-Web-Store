@@ -5,8 +5,7 @@
     echo $_GET['orderID'];
 
     //add employee permission check, otherwise people could visit page directly
-    //dont use privCheck() function
-    //i'm going to add a session variable for permissions that is stored at login, 0 = normal user, 1 = employee, 2 = owner
+    //session variable for permissions is permLevel, stored on login. 0 - normal user, 1 - employee, 2 - owner
     //if (!($_SESSION['permLevel'] > 0)) { kick them off the page...example can be found in allOrderHistory }
 
 
