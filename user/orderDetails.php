@@ -12,11 +12,9 @@
     //fetch order info
     $orderInfo = fetch($pdo, "SELECT * FROM orders WHERE orderID=?", [$oid]);
 
-    //priv check
-    $isOwnerOrEmployee = privCheck($pdo, $uid, 1);
+    //permission check
     $isOwnOrder = ($uid == $orderInfo['userID']);
-    //if none of the above are true, they dont have permission to view this order
-    if (!($isOwnerOrEmployee || $isOwnOrder))
+    if ($_SESSION['permLevel']>0 || $isOwnOrder))
     {
         echo "You do not have the require permission to view this page. Returning to user profile in 3 seconds.";
         header("refresh: 3; ./userProfile.php");
