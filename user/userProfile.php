@@ -13,8 +13,6 @@
     //assign to variables for ease of use
     $username = $userInfo['username'];
     $password = $userInfo['pass'];
-    $isEmployee = $userInfo['isEmployee'];
-    $isOwner = $userInfo['isOwner'];
     $email = $userInfo['email'];
     $hasEmail = true;
     if ($email == "") 
@@ -28,44 +26,47 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="../style/user.css">
         <title>Web Store - User Profile</title>
     </head>
 
     <body>
-        <h1>User Profile<h1>
-        <?php
-            echo "Username: $username<br>Email: $email<br>";
-
-            //if no email, include form to add email
-            if (!$hasEmail)
-            {
-                echo "  <form action='' method='post'>
-                            Email:
-                            <input type='text' name='email' required/>
-                            <input type='submit' name='addEmail' value='Add Email'/>
-                        </form><br>";
-            }
-
-            echo "<a href='./shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
-            echo "<a href='./userOrders.php'><button type='button'>View Orders</button><a/><br>";
+        <?php require_once("../style/nav.php"); navBar(); ?>
+        <div class="container">
             
-            //if employee, show outstanding orders
-            if ($isEmployee || $isOwner)
-            {
-                echo "<h3>Employee Only:<h3>
-                <a href='./outstandingOrders.php'><button type='button'>Order Fulfillment</button><a/><br>";
-            }
+            <?php
+                echo "<h2>User Profile</h2><div class='smallcontainer'><h3>Username:</h3>$username</div><br><div class='smallcontainer'><h3>Email:</h3>$email</div><br>";
 
-            //if owner, show inventory page
-            if ($isOwner)
-            {
-                echo "<h3>Owner Only:<h3>
-                <a href='../productInventory.php'><button type='button'>Product Inventory</button><a/><br>
-                <a href='./allOrderHistory.php'><button type='button'>View All Orders</button><a/><br>";
-            }
+                //if no email, include form to add email
+                if (!$hasEmail)
+                {
+                    echo "  <form action='' method='post'>
+                                <input type='text' name='email' id='email' placeholder='Enter an email to add...' required/>
+                                <input type='submit' name='addEmail' value='Add Email'/>
+                            </form><br>";
+                }
 
-        ?>
+                echo "<a href='./shoppingCart.php'><button type='button'>View Shopping Cart</button><a/><br>";
+                echo "<a href='./userOrders.php'><button type='button'>View Orders</button><a/><br>";
+
+                
+                //if employee, show outstanding orders
+                if ($_SESSION['permLevel']>0)
+                {
+                    echo "<h3>Employee Only:</h3>
+                    <a href='./outstandingOrders.php'><button type='button'>Order Fulfillment</button><a/><br>";
+                }
+
+                //if owner, show inventory page
+                if ($_SESSION['permLevel']>1)
+                {
+                    echo "<h3>Owner Only:</h3>
+                    <a href='../productInventory.php'><button type='button'>Product Inventory</button><a/><br>
+                    <a href='./allOrderHistory.php'><button type='button'>View All Orders</button><a/><br>";
+                }
+
+            ?>
+        </div>
     </body>
 
 </html>

@@ -4,30 +4,6 @@
     require_once("/sessionStart.php");
     require_once("/sqlFunc.php");
 
-    //checks if user $uid has $level and returns a boolean, true if they do, false if not
-    //$level 0 = normal user, 1 = employee or owner, 2 = owner
-    function privCheck($pdo, $uid, $level)
-    {
-        $userInfo = fetch($pdo, "SELECT * FROM users WHERE userID=?", [$uid]);
-
-        //owner check
-        if ($level = 2)
-        {
-            if ($userInfo['isOwner'] == 1) return true;
-            else return false;
-        }
-
-        //atleast an employee (also counts owner)
-        if ($level = 1)
-        {
-            if ($userInfo['isOwner'] == 1 || $userInfo['isEmployee'] == 1) return true;
-            else return false;
-        }
-
-        //if not any of the above, assume its false to prevent access
-        return false;
-    }
-
     //converts the status int into a readable string
     function statusConverter($status)
     {
