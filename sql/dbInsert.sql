@@ -1,5 +1,5 @@
 /*File for database INSERT scripts*/
-------------------------------------
+/*------------------------------------*/
 /*
  *
  * Insert 20 products into the database
@@ -66,7 +66,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
            10,
            249.99
            );
---------------ten-----------------
+/*--------------ten-----------------*/
 INSERT INTO products (prodName, descr, qtyAvailable, price)
 	values('Handhel vaccum',
            'Small vaccum for hard to reach areas, lithium ion battery.',
@@ -128,7 +128,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
            75,
            34.99
            );
------------------twenty------------------
+/*-----------------twenty------------------*/
 /*
  *
  * Insert 5 customers
@@ -149,7 +149,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
  INSERT INTO users (username, pass, email)
     values('test','1234', 'test@yahoo.com');
 
---Insert Extra 2 for employee/owner testing---
+/*--Insert Extra 2 for employee/owner testing---*/
  INSERT INTO users (username, pass, email, isEmployee)
     values('employee','1234', 'employee@hotmail.com', 1);
 
