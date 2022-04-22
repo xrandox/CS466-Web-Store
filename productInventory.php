@@ -13,7 +13,6 @@
 <body>
 
 <?php
-    require_once("./util/userUtil.php"); //privCheck func
     require_once("./util/creds.php"); //$pdo
     require_once("./util/sessionStart.php"); //$_SESSION['uid']
     require_once("./util/sqlFunc.php");
@@ -22,10 +21,7 @@
     $wuid = 7;
     $_SESSION['uid'] = $wuid;
 
-    #privCheck used from userUtil.php
-    $hasPriv = privCheck($pdo, $_SESSION['uid'], 1);
-
-    if($hasPriv)
+    if($_SESSION['permLevel'] > 0)
     {
         #used fetchAll from sqlFunc.php
         $rows = fetchAll($pdo, "SELECT * FROM products", []);
