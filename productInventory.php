@@ -21,7 +21,7 @@
     $wuid = 7;
     $_SESSION['uid'] = $wuid;
 
-    if($_SESSION['permLevel'] > 0)
+    if($_SESSION['permLevel'] == 2)
     {
         #used fetchAll from sqlFunc.php
         $rows = fetchAll($pdo, "SELECT * FROM products", []);
