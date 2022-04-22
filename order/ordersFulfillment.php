@@ -5,7 +5,7 @@
 
     $_GET['orderID'];
 
-   // Check if the user is a normal user. If so, they do
+    // Check if the user is a normal user. If so, they do
     // not have permission to see this page. Send them to
     // the index page.
     if ($_SESSION['permLevel'] == 0)
@@ -72,7 +72,10 @@
 
                     echo "Order Status: " . $statusString;
                ?></p>
-            <?php echo "Notes: " . $order['notes']?>
+            <form method="post">
+                <label for="notes">Notes:</label>
+                <input type="text" name="notes" value="<?php echo $order['notes']?>"></input>
+            </form>    
 
         </div>
 
@@ -90,7 +93,22 @@
 
     <?php
 
+        }
 
+        if(isset($_POST["notes"]))
+        {
+            $rs = $pdo->prepare("UPDATE orders SET notes = :n WHERE orderID = :o;");
+            $rs->execute(array(':n' => $_POST["notes"], ':o' => $_GET['orderID']));
+            
+            if($rs->rowCount() > 0)
+            {
+                header("refresh:0");
+                echo 'Updated notes.';
+            }
+            else
+            {
+                echo 'Did not update notes.';
+            }
         }
     ?>   
 
