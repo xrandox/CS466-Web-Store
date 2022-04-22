@@ -1,36 +1,24 @@
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
+    require_once("../util/sqlFunc.php");
 
-    echo $_GET['orderID'];
+    $_GET['orderID'];
 
-    //add employee permission check, otherwise people could visit page directly
-    //session variable for permissions is permLevel, stored on login. 0 - normal user, 1 - employee, 2 - owner
-    //if (!($_SESSION['permLevel'] > 0)) { kick them off the page...example can be found in allOrderHistory }
+   // Check if the user is a normal user. If so, they do
+    // not have permission to see this page. Send them to
+    // the index page.
+    if ($_SESSION['permLevel'] == 0)
+    {
+        echo "You don't have the privileges to view this page. Returning to the home page.";
+        header("refresh: 3; ../index.php");
+        exit;
+    }
 
+    // Fetch all the contents from the SELECT statements.
+    $orders = fetchAll($pdo, "SELECT * FROM orders WHERE orderID =?;", [$_GET["orderID"]]);
+    $products = fetchAll($pdo, "SELECT * FROM orderproducts WHERE orderID =?;", [$_GET["orderID"]]);
 
-
-
-    //you could get rid of the whole try-catch below if you want by requiring /util/sqlFunc.php
-    //this would be the equivalent to all the code below:
-    //require_once("../util/sqlFunc.php");
-    //$orders = fetchAll($pdo, "SELECT * FROM orders WHERE orderID =?;", [$_GET["orderID"]]); 
-    //$products = fetchAll($pdo, "SELECT * FROM orderproducts WHERE orderID =?;", [$_GET["orderID"]]);
-
-    try
-        {
-            $rs = $pdo->prepare("SELECT * FROM orders WHERE orderID =?;");
-            $rs->execute(array($_GET["orderID"]));
-            $orders = $rs->fetchAll(PDO::FETCH_ASSOC);
-
-            $rs = $pdo->prepare("SELECT * FROM orderproducts WHERE orderID =?;");
-            $rs->execute(array($_GET["orderID"]));
-            $products = $rs->fetchAll(PDO::FETCH_ASSOC);
-        }
-        catch(PDOexception $e) 
-        {
-            echo "Connection was not established to database, with reason: " . $e->getMessage();
-        }
 ?>
 <html>
 <body>

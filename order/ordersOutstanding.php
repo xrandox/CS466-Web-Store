@@ -2,9 +2,18 @@
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
 
-    echo $_SESSION['uid'];
+    $_SESSION['uid'];
 
-    //add employee permission check -- check fulfillment for example
+    // Check if the user is a normal user. If so, they do
+    // not have permission to see this page. Send them to
+    // the index page.
+    if ($_SESSION['permLevel'] == 0)
+    {
+        echo "You don't have the privileges to view this page. Returning to the home page.";
+        header("refresh: 3; ../index.php");
+        exit;
+    }
+?>
 <html>
 <body>
     <style>
@@ -18,8 +27,7 @@
     <?php
         try
         {
-            //recommend changing the query to "SELECT * FROM orders WHERE orderStatus>0" - this limits it to only orders that have actually been placed
-            $rs = $pdo->query("SELECT * FROM orders;");
+            $rs = $pdo->query("SELECT * FROM orders WHERE orderStatus > 0;");
             $orders = $rs->fetchAll(PDO::FETCH_ASSOC);
         }
         catch(PDOexception $e) 
