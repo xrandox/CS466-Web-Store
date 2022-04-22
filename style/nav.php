@@ -52,7 +52,8 @@ li a:hover {
             <li><a href='/CS466-Web-Store/index.php'>Index</a></li>
             <li style='float:right'><a href='/CS466-Web-Store/login.php'>Logout</a></li>";
         if ($permLevel > 0) echo "<li style='float:right'><a href='/CS466-Web-Store/order/ordersOutstanding.php'>Order Fulfillment</a></li>";
-        if ($permLevel == 2) echo "<li style='float:right'><a href='/CS466-Web-Store/user/allOrderHistory.php'>Full Order History</a></li>";
+        if ($permLevel == 2) echo "<li style='float:right'><a href='/CS466-Web-Store/productInventory.php'>Inventory</a></li>
+        <li style='float:right'><a href='/CS466-Web-Store/user/allOrderHistory.php'>Full Order History</a></li>";
         echo "</ul>";
     }
 
