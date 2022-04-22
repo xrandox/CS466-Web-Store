@@ -76,7 +76,8 @@
         </div>
 
         <?php
-
+        }
+        
         foreach($products as $product)
         {
         ?>
@@ -87,7 +88,7 @@
         </div>
 
     <?php
-        }
+
 
         }
     ?>   
