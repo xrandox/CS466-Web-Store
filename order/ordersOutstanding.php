@@ -25,6 +25,7 @@
         }
     </style>
     <?php
+
         try
         {
             $rs = $pdo->query("SELECT * FROM orders WHERE orderStatus > 0;");
