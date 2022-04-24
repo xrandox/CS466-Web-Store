@@ -8,14 +8,18 @@
         background-color: grey;
         text-align: center;
     }
+    body {
+        background-color: #252424;
+    }
 </style>   
 </head>
 <body>
-<h2>Moch products</h2>
+<h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Moch products</h3>
 <?php
 
     require_once("./util/creds.php");
     require_once("./util/sessionStart.php");
+    require_once("./style/nav.php"); navBar();
 /*
     echo($_SESSION['uid']);
 */
