@@ -8,6 +8,9 @@
         background-color: silver;
         text-align: center;
     }
+    body {
+        background-color: #252424;
+    }
 </style>   
 </head>
 <body>
@@ -16,11 +19,13 @@
     require_once("./util/creds.php"); //$pdo
     require_once("./util/sessionStart.php"); //$_SESSION['uid']
     require_once("./util/sqlFunc.php");
+    require_once("./style/nav.php"); navBar();
 
     if($_SESSION['permLevel'] == 2)
     {
         #used fetchAll from sqlFunc.php
         $rows = fetchAll($pdo, "SELECT * FROM products", []);
+        echo "<h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Inventory</h3>";
         foreach($rows as $product)
             {
             ?>
@@ -36,6 +41,7 @@
             <?php
             }
             ?>
+            </div>
             </body>
             </html>    
         <?php
