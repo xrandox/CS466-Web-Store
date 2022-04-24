@@ -7,34 +7,12 @@
     $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <html>
+<head>
+    <link rel="stylesheet" href="./style/prodDetails.css">
+    <title>Web Store - Product Details</title>
+</head>
 <body>
-    <style>
-        .cartButton
-        {
-            text-align: right;
-        }
-        .pDetails
-        {
-            border-style: solid;
-            border-width: 1px;
-            padding: 5px 25px 5px 25px;
-            text-align: center;
-        }
-        .pImage
-        {
-            padding: 25px 0px 25px 0px;
-            border-width: 1px;
-            text-align: center;
-        }
-        .pName
-        {
-            text-align: center;
-        }
-    </style>
-    
-        <div class="cartButton">
-            <button type="button"><img src="https://img.icons8.com/material-outlined/48/shopping-cart--v1.png" height="25" width="25" /></button>
-        </div>
+    <?php require_once("./style/nav.php"); navBar();?>
 
     <?php
     foreach($rows as $product)
@@ -57,12 +35,6 @@
                 <label for="qtyWanted">Quanty to order: </label>
                 <input type="number" name="qtyWanted" min="0" max="<?php echo $product['qtyAvailable']?>"/><br><br>
                 <input type="submit" value="Add to Shopping Cart"/> 
-            </form>
-        </div>
-
-        <div>
-            <form action="" method="post">
-                <a href="productList.php"><button type="button">Return to Shopping</button><a/> 
             </form>
         </div>
 
