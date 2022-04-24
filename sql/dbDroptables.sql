@@ -5,7 +5,8 @@
 DROP TABLE orderproducts;
 DROP TABLE orders;
 DROP TABLE shoppingcart;
-DROP TABLE products;
 DROP TABLE users;
+DROP TABLE products;
 DROP TABLE orderinfo;
+
 SHOW TABLES;
