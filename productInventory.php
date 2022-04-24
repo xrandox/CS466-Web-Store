@@ -1,17 +1,7 @@
 <html>
 <head>
-<title>productInventory</title>
-<style>
-    .aProduct{
-        border-style: dotted solid;
-        border-width: 1px;
-        background-color: silver;
-        text-align: center;
-    }
-    body {
-        background-color: #252424;
-    }
-</style>   
+    <title>Web Store - Product Inventory</title>
+    <link rel="stylesheet" href="./style/inventory.css">  
 </head>
 <body>
 
