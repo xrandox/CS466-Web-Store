@@ -4,7 +4,8 @@ body {
     margin: 0px;
 }
 
-ul {
+nav ul {
+    font-family: 'Consolas';
     position: fixed;
     list-style-type: none;
     margin: 0;
@@ -16,11 +17,11 @@ ul {
     z-index: 10;
 }
 
-li {
+nav li {
     float: left;
 }
 
-li a {
+nav li a {
     display: block;
     color: #FEF6F5;
     text-align: center;
@@ -28,12 +29,12 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+nav li a:hover {
     background-color: #555;
     color: white;
 }
 
-.active {
+nav .active {
     background-color: #FE731E;
     color: white;
 }
@@ -44,7 +45,8 @@ li a:hover {
     function navBar()
     {
         $permLevel = $_SESSION['permLevel'];
-        echo "<ul>
+        echo "<nav>
+        <ul>
             <li><a href='/CS466-Web-Store/productList.php'>Home</a></li>
             <li><a href='/CS466-Web-Store/user/userProfile.php'>User Profile</a></li>
             <li><a href='/CS466-Web-Store/shoppingCart.php'>Shopping Cart</a></li>
@@ -54,7 +56,7 @@ li a:hover {
         if ($permLevel > 0) echo "<li style='float:right'><a href='/CS466-Web-Store/order/ordersOutstanding.php'>Order Fulfillment</a></li>";
         if ($permLevel == 2) echo "<li style='float:right'><a href='/CS466-Web-Store/productInventory.php'>Inventory</a></li>
         <li style='float:right'><a href='/CS466-Web-Store/user/allOrderHistory.php'>Full Order History</a></li>";
-        echo "</ul>";
+        echo "</ul></nav>";
     }
 
 ?>
