@@ -1,17 +1,7 @@
 <html>
 <head>
-<title>productList</title>
-<style>
-    .aProduct{
-        border-style: dotted solid;
-        border-width: 1px;
-        background-color: grey;
-        text-align: center;
-    }
-    body {
-        background-color: #252424;
-    }
-</style>   
+    <title>Web Store - Product List</title>
+    <link rel="stylesheet" href="./style/prodList.css"> 
 </head>
 <body>
 <h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Moch products</h3>

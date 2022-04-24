@@ -1,0 +1,12 @@
+.aProduct{
+    border-style: dotted solid;
+    border-width: 1px;
+    background-color: grey;
+    text-align: center;
+}
+.aProduct button {
+    margin-bottom: 5px;
+}
+body {
+    background-color: #252424;
+}
