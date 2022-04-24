@@ -163,7 +163,6 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
 ----------------------------------------------
  /* Insert order for jdoe44
  ----------------------------------------------
-
 /*Order 1, the order ID will change for future orders*/
 INSERT INTO orderproducts (orderID, prodID, qty)
 VALUES 
@@ -253,7 +252,7 @@ VALUES
    (5, 17, 1),
    (5, 15, 1),
    (5, 12, 1),
-   (5, 11, 1),
+   (5, 11, 1);
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
@@ -270,10 +269,3 @@ WHERE orderID=5;
 ----------------------------------------------
 /* Five orders inserted */
 ----------------------------------------------
-
-
-
-
-
-
-
