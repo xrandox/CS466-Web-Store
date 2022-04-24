@@ -1,0 +1,23 @@
+.pDetails
+{
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 25px 5px 25px;
+    text-align: center;
+}
+.pImage
+{
+    padding: 25px 0px 25px 0px;
+    border-width: 1px;
+    text-align: center;
+}
+.pName
+{
+    text-align: center;
+    margin-top:65px;
+}
+body {
+    background-color: #1a1918;
+    color: white;
+    font-family: 'Consolas';
+}
