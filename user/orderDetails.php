@@ -14,7 +14,7 @@
 
     //permission check
     $isOwnOrder = ($uid == $orderInfo['userID']);
-    if ($_SESSION['permLevel']>0 || $isOwnOrder))
+    if (!($_SESSION['permLevel']>0 || $isOwnOrder))
     {
         echo "You do not have the require permission to view this page. Returning to user profile in 3 seconds.";
         header("refresh: 3; ./userProfile.php");
@@ -54,78 +54,88 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="../util/style.php">
+        <link rel="stylesheet" href="../style/orderDetails.css">
         <title>Web Store - Order Details</title>
     </head>
 
     <body>
+        <?php require_once("../style/nav.php"); navBar(); ?>
         <?php
             //basic order info
-            echo "<h1>Order #$oid<h1>";
+            echo "<div class='ordercontainer'><h1>Order #$oid</h1>";
             
-            echo "Order Status: $orderStatus<br>
+            echo "<div class='infocontainer'>Order Status: $orderStatus<br>
             Order Notes: $notes<br>";
 
             if ($shippingNum != "") echo "Shipping Number: $shippingNum<br>";
 
             echo "Shipping Cost: $5.00<br>
-            Total Paid: $$total<br>";
+            Total Paid: $$total<br></div>";
         ?>
 
-        <button onclick="document.getElementById('product-info').classList.toggle('hidden');">Show Products Included in Order</button>
+            <button onclick="document.getElementById('product-info').classList.toggle('hidden');document.getElementById('product-div').classList.toggle('hidden');">Toggle Products</button>
+            <button onclick="document.getElementById('shipping-info').classList.toggle('hidden');document.getElementById('shipping-div').classList.toggle('hidden');">Toggle Shipping Info</button>
+            <button onclick="document.getElementById('billing-info').classList.toggle('hidden');document.getElementById('billing-div').classList.toggle('hidden');">Toggle Billing Info</button>
+            
+            <p id="product-info" class="hidden">
+                <div id="product-div" class="hidden">
+                <?php
+                    //loop through products in the order and display them
+                    foreach($orderProducts as $product)
+                    {
+                        $qty = $product['qty'];
+                        $productInfo = fetch($pdo, "SELECT * FROM products WHERE prodID=?", [$product['prodID']]);
+                        $prodName = $productInfo['prodName'];
+                        $price = $qty * $productInfo['price'];
+                        $imageLink = $productInfo['imageLink'];
+                        echo "<div class='product'><img src='$imageLink' alt='$name'/><br>";
+                        echo "$prodName<br>Quantity: $qty<br>Total Price: $$price<br></div>";
+                    }
+                ?>
+                </div>
+            </p>
 
-        <p id="product-info" class="product-info hidden"> 
-            <?php
-                //loop through products in the order and display them
-                foreach($orderProducts as $product)
-                {
-                    $qty = $product['qty'];
-                    $productInfo = fetch($pdo, "SELECT * FROM products WHERE prodID=?", [$product['prodID']]);
-                    $prodName = $productInfo['prodName'];
-                    $price = $qty * $productInfo['price'];
-                    $imageLink = $productInfo['imageLink'];
-                    echo "<img src='$imageLink' alt='$name'/><br>";
-                    echo "$prodName<br>Quantity: $qty<br>Total Price: $$price<br><br>";
-                }
-            ?>
-        </p>
+            
 
-        <button onclick="document.getElementById('shipping-info').classList.toggle('hidden');">Show Shipping Info</button>
+            <p id="shipping-info" class="hidden">
+                <div id="shipping-div" class="hidden">
+                <?php
+                    echo "<div class='infocontainer'><h3><u>Shipping Info</u></h3>
+                    Name: $name<br>
+                    Address: $street<br>$city, $stateAbbr, $zip</div>";
+                ?>
+                </div>
+            </p>
 
-        <p id="shipping-info" class="shipping-info hidden"> 
-            <?php
-                echo "Name: $name<br>
-                Address:<br> $street<br>$city, $stateAbbr, $zip<br>";
-            ?>
-        </p>
+            
 
-        <button onclick="document.getElementById('billing-info').classList.toggle('hidden');">Show Billing Info</button>
+            <p id="billing-info" class="hidden"> 
+                <div id="billing-div" class="hidden">
+                <?php
+                    echo "<div class='infocontainer'><h3><u>Billing Info</u></h3><h4>Billing Address</h4>";
+                    if ($addressIsShared) echo "Shipping address was used for billing address<br>";
+                    if (!$addressIsShared)
+                    {
+                        //if it's a diff address than shipping, we reassign the vars
+                        $name = $billingInfo['recipientName'];
+                        $street = $billingInfo['street'];
+                        $city = $billingInfo['city'];
+                        $stateAbbr = $billingInfo['stateAbbr'];
+                        $zip = $billingInfo['zip'];
 
-        <p id="billing-info" class="billing-info hidden"> 
-            <?php
-                if ($addressIsShared) echo "Shipping address was used for billing address<br>";
-                if (!$addressIsShared)
-                {
-                    //if it's a diff address than shipping, we reassign the vars
-                    $name = $billingInfo['recipientName'];
-                    $street = $billingInfo['street'];
-                    $city = $billingInfo['city'];
-                    $stateAbbr = $billingInfo['stateAbbr'];
-                    $zip = $billingInfo['zip'];
+                        echo "Name: $name
+                        Address: $street<br>$city, $stateAbbr, $zip<br>";
+                    }
 
-                    echo "Name: $name
-                    Address:<br> $street<br>$city, $stateAbbr, $zip<br>";
-                }
+                    echo "<h4>Card Info</h4>
+                        Card Number: $cardNumber<br>
+                        CVC: $cvc<br>
+                        EXP: $expMon/$expYear</div>";
+                ?>
+                </div>
+            </p>
+        </div>
 
-                echo "Card Info:<br>
-                    Card Number: $cardNumber<br>
-                    CVC: $cvc<br>
-                    EXP: $expMon/$expYear";
-            ?>
-        </p>
-
-
-        <a href='./userProfile.php'><button type='button'>Return to User Profile</button><a/><br>
     </body>
 
 </html>
