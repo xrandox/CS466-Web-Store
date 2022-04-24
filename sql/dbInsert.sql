@@ -168,7 +168,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
 /*This example, the address is the same for billing and shipping. If different, you need to insert another row of orderinfo*/
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
-   ('John Doe', '123 Pickle lane', 'DeKalb', 'IL', '60112', 1, '12345678912345678', '123', '04', '2050');
+   ('John Doe', '123 Pickle lane', 'DeKalb', 'IL', '60112', 1, '22821337711440876', '404', '04', '2050');
 
 /*Now link all the info together, billing and shipping ID are the same here*/
 INSERT INTO orders (userID, billingID, shippingID, total)
@@ -191,7 +191,7 @@ VALUES
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
-   ('Dave Wright', '404 Error Ct.', 'Elgin', 'IL', '60123', 1, '12345678912345678', '123', '04', '2050');
+   ('Dave Wright', '404 Error Ct.', 'Elgin', 'IL', '60123', 1, '12916186075510279', '498', '03', '2028');
 
 INSERT INTO orders (userID, billingID, shippingID, total)
 VALUES
@@ -213,7 +213,7 @@ VALUES
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
-   ('Riley Williams', '555 Five Dr.', 'Crystal Lake', 'IL', '60014', 1, '12345678912345678', '123', '04', '2050');
+   ('Riley Williams', '555 Five Dr.', 'Crystal Lake', 'IL', '60014', 1, '59160392168918453', '621', '12', '2024');
 
 INSERT INTO orders (userID, billingID, shippingID, total)
 VALUES
@@ -234,7 +234,7 @@ VALUES
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
-   ('Cozy Holmes', '202 West street', 'DeKalb', 'IL', '60112', 1, '12345678912345678', '123', '04', '2050');
+   ('Cozy Holmes', '202 West street', 'DeKalb', 'IL', '60112', 1, '52742126081283356', '842', '08', '2040');
 
 INSERT INTO orders (userID, billingID, shippingID, total)
 VALUES
@@ -254,7 +254,7 @@ VALUES
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
-   ('Dr. Test', '111 Test ave.', 'DeKalb', 'IL', '60112', 1, '12345678912345678', '123', '04', '2050');
+   ('Dr. Test', '111 Test ave.', 'DeKalb', 'IL', '60112', 1, '10227338001107269', '882', '12', '2035');
 
 INSERT INTO orders (userID, billingID, shippingID, total)
 VALUES
