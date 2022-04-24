@@ -1,0 +1,107 @@
+.hidden {
+    display: none;
+}
+
+body {
+    background-color: #1a1918;
+}
+
+.ordercontainer {
+    display: block;
+    text-align: center;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 5px;
+    margin-top: 75px;
+}
+
+.ordercontainer * {
+    color: white;
+    font-family: 'Consolas';
+}
+
+.ordercontainer h3 {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.ordercontainer button {
+    outline: none;
+    border: none;
+    width: 25%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    color: #1a1918;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.ordercontainer button:hover {
+    background-color: #1a1918;
+    color: white;
+}
+
+.infocontainer {
+    display: block;
+    text-align: center;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.infocontainer * {
+    color: white;
+    font-family: 'Consolas';
+    color: #ffffff;
+}
+
+.infocontainer h4 {
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.infocontainer h5 {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.product {
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 5px;
+    margin-top: 10px;
+    margin-inline: 10px;
+}
+

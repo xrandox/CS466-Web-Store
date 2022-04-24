@@ -16,17 +16,16 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="../style/orders.css"/>
         <title>Web Store - User Orders</title>
     </head>
 
     <body>
-        <h1>Orders:<h1>
+        <?php require_once("../style/nav.php"); navBar(); ?>
+        <h1>Orders</h1>
         <?php
             listOrders($userOrders);
         ?>
-
-        <a href='./userProfile.php'><button type='button'>Return to User Profile</button><a/><br>
     </body>
 
 </html>

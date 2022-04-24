@@ -1,0 +1,9 @@
+.aProduct{
+    border-style: dotted solid;
+    border-width: 1px;
+    background-color: gray;
+    text-align: center;
+}
+body {
+    background-color: #252424;
+}

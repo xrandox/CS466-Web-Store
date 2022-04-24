@@ -63,7 +63,7 @@ p {
             else if ($result['isEmployee'] == 1) $_SESSION['permLevel'] = 1;
             else $_SESSION['permLevel'] = 0;
             //redirect to productlist
-            header("Location: ./index.php");
+            header("Location: ./productList.php");
             exit();
         }
 

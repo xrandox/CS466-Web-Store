@@ -1,14 +1,7 @@
 <html>
 <head>
-<title>productInventory</title>
-<style>
-    .aProduct{
-        border-style: dotted solid;
-        border-width: 1px;
-        background-color: silver;
-        text-align: center;
-    }
-</style>   
+    <title>Web Store - Product Inventory</title>
+    <link rel="stylesheet" href="./style/inventory.css">  
 </head>
 <body>
 
@@ -16,15 +9,13 @@
     require_once("./util/creds.php"); //$pdo
     require_once("./util/sessionStart.php"); //$_SESSION['uid']
     require_once("./util/sqlFunc.php");
-
-    #Remove this, i used this for testing, but the userID would be passed
-    $wuid = 7;
-    $_SESSION['uid'] = $wuid;
+    require_once("./style/nav.php"); navBar();
 
     if($_SESSION['permLevel'] == 2)
     {
         #used fetchAll from sqlFunc.php
         $rows = fetchAll($pdo, "SELECT * FROM products", []);
+        echo "<h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Inventory</h3>";
         foreach($rows as $product)
             {
             ?>
@@ -40,6 +31,7 @@
             <?php
             }
             ?>
+            </div>
             </body>
             </html>    
         <?php
