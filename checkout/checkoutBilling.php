@@ -10,42 +10,41 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="../style/checkoutForm.css">
         <title>Web Store - Checkout</title>
     </head>
 
     <body>
-        <h1>Checkout<h1>
         <form action="" method="post">
-        Billing Info:<br>
+        <h3>Checkout - Billing Info:</h3>
         <?php
             if(!$_SESSION['shippingIsBilling']) 
             {
-                echo "Full Name:
-                <input type='text' name='name'/><br>
-                Street:
-                <input type='text' name='street'/><br>
-                City:
-                <input type='text' name='city'/><br>
-                State:
-                <select name='state' id='state'>";
+                echo "<label for='name'>Full Name:</label>
+                <input type='text' id='name' name='name' placeholder='Enter the recipients name...' required/><br>
+                <label for='street'>Street:</label>
+                <input type='text' id='street' name='street' placeholder='Enter the full street address...' required/><br>
+                <label for='city'>City:</label>
+                <input type='text' id='city' name='city' placeholder='Enter the city name...' required/><br>
+                <label for='state'>State:</label>
+                <select name='state' id='state' required>";
                 foreach($states as $state)
                 {
                     echo "<option value='$state'>$state</option>";
                 }
                 echo "</select><br>
-                Zip:
-                <input type='text' name='zip' maxlength='5'/><br>";
+                <label for='zip'>Zip:</label>
+                <input type='text' id='zip' name='zip' maxlength='5' placeholder='Enter the 5 digit zip...' required/><br>";
             }
         ?>
-            Card Number:
-            <input type="text" name="cardNum" maxlength="19" required/><br>
-            CVC:
-            <input type="text" name="cvc" maxlength="3" required/><br>
-            Expiration Month:
-            <input type="text" name="expm" maxlength="2" required/>
-            Expiration Year:
-            <input type="text" name="expy" maxlength="4" required/><br>
+            <label for='cardNum'>Card Number:</label>
+            <input type="text" id='cardNum' name="cardNum" placeholder='Not your actual card number please...' maxlength="19" required/>
+            <label for='cvc'>CVC:</label>
+            <input type="text" id='cvc' name="cvc" placeholder='123..' maxlength="3" required/>
+            <label for='expm'>Expiration Month:</label>
+            <input type="text" id='expm' name="expm" placeholder='02...' maxlength="2" required/>
+            <label for='expy'>Expiration Year:</label>
+            <input type="text" id='expy' name="expy" placeholder='2025...' maxlength="4" required/>
 
             <input type="submit" name="Checkout" value="Submit Order"/>
 
