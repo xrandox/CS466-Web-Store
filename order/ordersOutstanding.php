@@ -23,8 +23,15 @@
             border-width: 1px;
             padding: 5px 5px 5px 5px;
         }
+        body {
+            background-color: #252424;
+            color: white;
+            font-family: 'Consolas';
+        }
     </style>
     <?php
+        require_once("../style/nav.php"); navBar();
+        echo "<h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Outstanding Orders</h3>";
 
         try
         {
