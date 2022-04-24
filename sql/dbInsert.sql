@@ -164,10 +164,6 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
  /* Insert order for jdoe44
  ----------------------------------------------
 /*Order 1, the order ID will change for future orders*/
-INSERT INTO orderproducts (orderID, prodID, qty)
-VALUES 
-   (1, 1, 2),
-   (1, 2, 1);
 
 /*This example, the address is the same for billing and shipping. If different, you need to insert another row of orderinfo*/
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
@@ -184,13 +180,14 @@ UPDATE orders
 SET orderStatus=1
 WHERE orderID=1;
 
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (1, 1, 2),
+   (1, 2, 1);
+
 ----------------------------------------------
 /* Insert order for kingdave */
 ----------------------------------------------
-INSERT INTO orderproducts (orderID, prodID, qty)
-VALUES 
-   (2, 18, 2),
-   (2, 10, 1);
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
@@ -204,14 +201,15 @@ UPDATE orders
 SET orderStatus=1
 WHERE orderID=2;
 
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (2, 18, 2),
+   (2, 10, 1);
 
 ----------------------------------------------
 /* Insert order for saladlover */
 ----------------------------------------------
-INSERT INTO orderproducts (orderID, prodID, qty)
-VALUES 
-   (3, 20, 1),
-   (3, 14, 1);
+
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
@@ -225,12 +223,14 @@ UPDATE orders
 SET orderStatus=1
 WHERE orderID=3;
 
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (3, 20, 1),
+   (3, 14, 1);
+
 ----------------------------------------------
 /* Insert order for warmwinter */
 ----------------------------------------------
-INSERT INTO orderproducts (orderID, prodID, qty)
-VALUES 
-   (4, 13, 4);
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
@@ -244,15 +244,13 @@ UPDATE orders
 SET orderStatus=1
 WHERE orderID=4;
 
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (4, 13, 4);
+
 ----------------------------------------------
 /* Insert order for test */
 ----------------------------------------------
-INSERT INTO orderproducts (orderID, prodID, qty)
-VALUES 
-   (5, 17, 1),
-   (5, 15, 1),
-   (5, 12, 1),
-   (5, 11, 1);
 
 INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
 VALUES
@@ -265,6 +263,13 @@ VALUES
 UPDATE orders 
 SET orderStatus=1
 WHERE orderID=5;
+
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (5, 17, 1),
+   (5, 15, 1),
+   (5, 12, 1),
+   (5, 11, 1);
 
 ----------------------------------------------
 /* Five orders inserted */
