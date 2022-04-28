@@ -1,44 +1,22 @@
 <html>
 <head>
-<title>productInventory</title>
-<style>
-    .aProduct{
-        border-style: dotted solid;
-        border-width: 1px;
-        background-color: silver;
-        text-align: center;
-    }
-</style>   
+    <title>Web Store - Product Inventory</title>
+    <link rel="stylesheet" href="./style/inventory.css">  
 </head>
 <body>
 
 <?php
-    
+    require_once("./util/creds.php"); //$pdo
+    require_once("./util/sessionStart.php"); //$_SESSION['uid']
+    require_once("./util/sqlFunc.php");
+    require_once("./style/nav.php"); navBar();
 
-try{
-
-    require_once("./util/creds.php");
-    require_once("./util/sessionStart.php");
-    
-    #Remove this, i used this for testing, but the userID would be passed
-    $uid = 7;
-    $_SESSION['uid'] = $uid;
-
-    $rs = $pdo->prepare("SELECT * FROM users WHERE userID = ?;");
-    $rs->execute(array($_SESSION["uid"]));
-    $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
-    
-    foreach($rows as $name)
+    if($_SESSION['permLevel'] == 2)
     {
-
-        if($name['isEmployee'] == 1 or $name['isOwner'] == 1)
-        {
-            echo "<h3><center>" . "Welcome back " . $name['username'] . "!</h3></center>";
-            $rs = $pdo->query("SELECT * FROM products;");
-            $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
-            ?>
-            <?php
-            foreach($rows as $product)
+        #used fetchAll from sqlFunc.php
+        $rows = fetchAll($pdo, "SELECT * FROM products", []);
+        echo "<h3 style='margin-top:65px;color:white;font-family:Consolas;text-align:center;'>Inventory</h3>";
+        foreach($rows as $product)
             {
             ?>
                 <!-- Create a div foreach product-->
@@ -53,19 +31,15 @@ try{
             <?php
             }
             ?>
+            </div>
             </body>
-            </html>
-            <?php
-        }
-        else
-        {
-            echo "You dont have permissions to view this!";
-        }
+            </html>    
+        <?php
     }
-    
+    else
+    {
+        echo "You dont have permissions to view this!";
+        header("refresh: 3; ./productList.php");
+    }
 
-}
-catch(PDOexception $e) {
-    echo "Connection was not established to database, with reason: " . $e->getMessage();
-}
 ?>

@@ -8,11 +8,10 @@
 
     $uid = $_SESSION['uid'];
 
-    //priv check
-    $hasPriv = privCheck($pdo, $uid, 2);
-    if (!$hasPriv)
+    //permission check
+    if ($_SESSION['permLevel'] != 2)
     {
-        echo "You don't have the privileges to view this page. Returning to user profile in 3 seconds";
+        echo "You don't have the privileges to view this page. Returning to user profile in 3 seconds;";
         header("refresh: 3; ./userProfile.php");
         exit;
     }
@@ -26,16 +25,16 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="../style/orders.css">
         <title>Web Store - All Orders</title>
     </head>
 
     <body>
-        <h1>Orders:<h1>
+        <?php require_once("../style/nav.php"); navBar(); ?>
+        <h1>Orders:</h1>
         <?php
             listOrders($allOrders);
         ?>
-        <a href='./userProfile.php'><button type='button'>Return to User Profile</button><a/><br>
     </body>
 
 </html>

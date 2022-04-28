@@ -3,18 +3,17 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel='stylesheet' href='./style/login.css'/>
         <title>Web Store - Login</title>
     </head>
 
     <body>
-        <h1>Login<h1>
-        Either login or register to continue!<br>
         <form action="" method="post">
-            Username:
-            <input type="text" name="username" required/><br>
-            Password:
-            <input type="password" name="password" required/><br>
+            <h3>Login</h3>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username..." required/>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password..." required/>
             <input type="submit" name="Login" value="Login"/>
             <input type="submit" name="Register" value="Register"/>
         </form>
@@ -22,10 +21,23 @@
 
 </html>
 
+<style>
+p {
+    color: red;
+    text-align: center;
+    font-size: 30px;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+}
+</style>
+
 <?php
     require_once("./util/creds.php");
     require_once("./util/sqlFunc.php");
     require_once("./util/sessionStart.php");
+
 
     //login code
     if (isset($_POST['Login'])) 
@@ -39,16 +51,19 @@
         //if there is no match
         if($result == false)
         {
-            echo("Incorrect username or password");
+            echo("<p>Either account doesn't exist or you entered an incorrect username or password</p>");
             return;
         }
         else //otherwise log them in
         {
             echo("Login successful");
-            //set userid session variable
-            $_SESSION['uid'] = $result[userID];
+            //set session variables
+            $_SESSION['uid'] = $result['userID'];
+            if ($result['isOwner'] == 1) $_SESSION['permLevel'] = 2;
+            else if ($result['isEmployee'] == 1) $_SESSION['permLevel'] = 1;
+            else $_SESSION['permLevel'] = 0;
             //redirect to productlist
-            header("Location: ./index.php");
+            header("Location: ./productList.php");
             exit();
         }
 
@@ -72,12 +87,12 @@
             //if success
             if($stmt)
             {
-                echo("Registered successfully!");
+                echo("<p>Registered successfully!</p>");
                 $result = fetch($pdo, "SELECT * FROM users WHERE username=?", [$username]);
 
 
                 //get userid session variable
-                $_SESSION['uid'] = $result[userID];
+                $_SESSION['uid'] = $result['userID'];
 
                 //redirect to productList
                 header("Location: ./index.php");
@@ -85,7 +100,7 @@
         }
         else 
         {
-            echo("Registration failed: Username already exists");
+            echo("<p>Registration failed: Username already exists</p>");
             return;
         }
     }

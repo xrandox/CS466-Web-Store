@@ -1,32 +1,50 @@
 <!--user utilities-->
+<style>
+.smallcontainer {
+    display: block;
+    text-align: center;
+    width: 50%;
+    position: relative;
+    left: 25%;
+    background-color: rgba(255,255,255,0.13);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(13, 12, 20, 0.6);
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.smallcontainer * {
+    color: white;
+    font-family: 'Consolas';
+    color: #ffffff;
+}
+
+.smallcontainer h3 {
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.smallcontainer:hover {
+    background-color: #bebebe;
+    color: #black;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+</style>
 <?php
     require_once("/creds.php");
     require_once("/sessionStart.php");
     require_once("/sqlFunc.php");
-
-    //checks if user $uid has $level and returns a boolean, true if they do, false if not
-    //$level 0 = normal user, 1 = employee or owner, 2 = owner
-    function privCheck($pdo, $uid, $level)
-    {
-        $userInfo = fetch($pdo, "SELECT * FROM users WHERE userID=?", [$uid]);
-
-        //owner check
-        if ($level = 2)
-        {
-            if ($userInfo['isOwner'] == 1) return true;
-            else return false;
-        }
-
-        //atleast an employee (also counts owner)
-        if ($level = 1)
-        {
-            if ($userInfo['isOwner'] == 1 || $userInfo['isEmployee'] == 1) return true;
-            else return false;
-        }
-
-        //if not any of the above, assume its false to prevent access
-        return false;
-    }
 
     //converts the status int into a readable string
     function statusConverter($status)
@@ -51,15 +69,14 @@
         //if it's empty, there's nothing to list
         if ($orders == []) 
         {
-            echo "No orders to show<br>";
+            echo "<div class='smallcontainer'><p>No orders to show</p></div>";
             return;
         }
 
         //loop through list displaying each order
-        echo "Click on the order for a more detailed view<br>";
+        echo "<p style='text-align:center;margin-bottom:15px;font-family:Consolas;color:#ffffff;'>Click on the order for a more details</p>";
         foreach ($orders as $order)
         {
-            echo "<br>";
             //assign vars for convenience
             $orderID = $order['orderID'];
             $total = $order['total'];
@@ -67,11 +84,12 @@
             $status = statusConverter($order['orderStatus']); //convert status to readable string
 
             //echo a link to order details page and general order info
-            echo "<a href='./orderDetails.php?orderID=$orderID'>Order ID: #$orderID</a><br>
-            Total Paid: $$total<br>
+            echo "<div class='smallcontainer'><a href='./orderDetails.php?orderID=$orderID'>";
+            echo "<h3>Order ID #$orderID</h3>
+            <p>Total Paid: $$total<br>
             Status: $status<br>";
             if ($shippingNumber != "") echo "Shipping Number: $shippingNumber<br>";
-            
+            echo "</p></a></div>";
         }
         return;
     }

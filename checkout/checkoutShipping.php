@@ -9,23 +9,21 @@
 
 <!DOCTYPE html>
 <html>
-
     <head>
-        <link rel="stylesheet" href="style.php">
+        <link rel="stylesheet" href="../style/checkoutForm.css">
         <title>Web Store - Checkout</title>
     </head>
 
     <body>
-        <h1>Checkout<h1>
         <form action="" method="post">
-            Shipping Info:<br>
-            Full Name:
-            <input type="text" name="name" required/><br>
-            Street:
-            <input type="text" name="street" required/><br>
-            City:
-            <input type="text" name="city" required/><br>
-            State:
+            <h3>Checkout - Shipping Info:</h3>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter the recipients name..." required/><br>
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" placeholder="Enter the full street address..." required/><br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" placeholder="Enter the city name..." required/><br>
+            <label for="state">State:</label>
             <select name="state" id="state" required>
             <?php 
             foreach($states as $state)
@@ -34,16 +32,13 @@
             }
             ?>
             </select><br>
-            Zip:
-            <input type="text" name="zip" maxlength="" required/><br>
-            Use same address for billing info? 
-            <input type="checkbox" name="alsoBilling"/><br>
-
+            <label for="zip">Zip:</label>
+            <input type="text" id="zip" name="zip" maxlength="5" placeholder="Enter the 5 digit zip..." required/><br>
+            <label class="inline" for="alsoBilling">Use same address for billing info?</label>
+            <input class="inline" type="checkbox" id="alsoBilling" name="alsoBilling"/><br>
             <input type="submit" name="Checkout" value="Submit Shipping Info"/>
-
         </form>
     </body>
-
 </html>
 
 

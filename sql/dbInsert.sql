@@ -1,5 +1,5 @@
 /*File for database INSERT scripts*/
-------------------------------------
+/*------------------------------------*/
 /*
  *
  * Insert 20 products into the database
@@ -66,7 +66,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
            10,
            249.99
            );
---------------ten-----------------
+/*--------------ten-----------------*/
 INSERT INTO products (prodName, descr, qtyAvailable, price)
 	values('Handhel vaccum',
            'Small vaccum for hard to reach areas, lithium ion battery.',
@@ -128,7 +128,7 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
            75,
            34.99
            );
------------------twenty------------------
+/*-----------------twenty------------------*/
 /*
  *
  * Insert 5 customers
@@ -149,14 +149,128 @@ INSERT INTO products (prodName, descr, qtyAvailable, price)
  INSERT INTO users (username, pass, email)
     values('test','1234', 'test@yahoo.com');
 
---Insert Extra 2 for employee/owner testing---
+/*--Insert Extra 2 for employee/owner testing---*/
  INSERT INTO users (username, pass, email, isEmployee)
     values('employee','1234', 'employee@hotmail.com', 1);
 
  INSERT INTO users (username, pass, email, isOwner)
     values('owner','1234', 'owner@hotmail.com', 1);
+/*
+ *
+ * Insert orders for 5 customers
+ *
+ */ 
+----------------------------------------------
+ /* Insert order for jdoe44
+ ----------------------------------------------
+/*Order 1, the order ID will change for future orders*/
+
+/*This example, the address is the same for billing and shipping. If different, you need to insert another row of orderinfo*/
+INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
+VALUES
+   ('John Doe', '123 Pickle lane', 'DeKalb', 'IL', '60112', 1, '22821337711440876', '404', '04', '2050');
+
+/*Now link all the info together, billing and shipping ID are the same here*/
+INSERT INTO orders (userID, billingID, shippingID, total)
+VALUES
+   (1, 1, 1, 258.00);
+
+/*If you want to change the status, that must be done after adding the info, or the constraint will prevent it*/
+UPDATE orders 
+SET orderStatus=1
+WHERE orderID=1;
+
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (1, 1, 2),
+   (1, 2, 1);
+
+----------------------------------------------
+/* Insert order for kingdave */
+----------------------------------------------
+
+INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
+VALUES
+   ('Dave Wright', '404 Error Ct.', 'Elgin', 'IL', '60123', 1, '12916186075510279', '498', '03', '2028');
+
+INSERT INTO orders (userID, billingID, shippingID, total)
+VALUES
+   (2, 2, 2, 269.97);
+
+UPDATE orders 
+SET orderStatus=1
+WHERE orderID=2;
+
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (2, 18, 2),
+   (2, 10, 1);
+
+----------------------------------------------
+/* Insert order for saladlover */
+----------------------------------------------
 
 
+INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
+VALUES
+   ('Riley Williams', '555 Five Dr.', 'Crystal Lake', 'IL', '60014', 1, '59160392168918453', '621', '12', '2024');
 
+INSERT INTO orders (userID, billingID, shippingID, total)
+VALUES
+   (3, 3, 3, 40.51);
 
+UPDATE orders 
+SET orderStatus=1
+WHERE orderID=3;
 
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (3, 20, 1),
+   (3, 14, 1);
+
+----------------------------------------------
+/* Insert order for warmwinter */
+----------------------------------------------
+
+INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
+VALUES
+   ('Cozy Holmes', '202 West street', 'DeKalb', 'IL', '60112', 1, '52742126081283356', '842', '08', '2040');
+
+INSERT INTO orders (userID, billingID, shippingID, total)
+VALUES
+   (4, 4, 4, 514);
+
+UPDATE orders 
+SET orderStatus=1
+WHERE orderID=4;
+
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (4, 13, 4);
+
+----------------------------------------------
+/* Insert order for test */
+----------------------------------------------
+
+INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip, isBilling, cardNumber, cvc, expMon, expYear)
+VALUES
+   ('Dr. Test', '111 Test ave.', 'DeKalb', 'IL', '60112', 1, '10227338001107269', '882', '12', '2035');
+
+INSERT INTO orders (userID, billingID, shippingID, total)
+VALUES
+   (5, 5, 5, 93.76);
+
+UPDATE orders 
+SET orderStatus=1
+WHERE orderID=5;
+
+INSERT INTO orderproducts (orderID, prodID, qty)
+VALUES 
+   (5, 17, 1),
+   (5, 15, 1),
+   (5, 12, 1),
+   (5, 11, 1);
+
+----------------------------------------------
+/* Five orders inserted */
+----------------------------------------------
