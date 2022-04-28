@@ -42,9 +42,9 @@ a {
 
 </style>
 <?php
-    require_once("/creds.php");
-    require_once("/sessionStart.php");
-    require_once("/sqlFunc.php");
+    require_once("creds.php");
+    require_once("sessionStart.php");
+    require_once("sqlFunc.php");
 
     //converts the status int into a readable string
     function statusConverter($status)

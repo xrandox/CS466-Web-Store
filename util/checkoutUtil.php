@@ -1,7 +1,7 @@
 <?php
-    require_once("/creds.php");
-    require_once("/sessionStart.php");
-    require_once("/sqlFunc.php");
+    require_once("creds.php");
+    require_once("sessionStart.php");
+    require_once("sqlFunc.php");
 
 
     //array of state abbreviations for address
