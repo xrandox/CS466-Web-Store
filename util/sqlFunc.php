@@ -1,5 +1,6 @@
+<!--Coded by Ryan Sands - z1918476-->
 <?php
-    //executes $sql with $varArray, returns true for success
+    //executes given $sql statement with $varArray, returns true for success
     function execute($pdo, $sql, $varArray)
     {
         try 
@@ -16,7 +17,7 @@
         }
     }
 
-    //executes $sql with $varArray, returns the result row
+    //executes given $sql statement with $varArray, returns the result row
     function fetch($pdo, $sql, $varArray)
     {
         try
@@ -34,7 +35,7 @@
         }
     }
 
-    //executes $sql with $varArray, returns all matching rows
+    //executes given $sql statement with $varArray, returns all matching rows
     function fetchAll($pdo, $sql, $varArray)
     {
         try

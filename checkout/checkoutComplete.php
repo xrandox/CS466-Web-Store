@@ -1,5 +1,6 @@
 <!--checkout complete-->
 <!--This is the final checkout page which shows a confirmation along with various other information about the order-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
@@ -50,7 +51,3 @@
     </body>
 
 </html>
-
-<?php
-
-?>

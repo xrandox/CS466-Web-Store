@@ -1,6 +1,7 @@
+<!--This page was just for a quick link to all pages for testing-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("./util/sessionStart.php");
-    
 ?>
 
 <!DOCTYPE html>

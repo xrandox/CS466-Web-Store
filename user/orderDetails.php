@@ -1,5 +1,6 @@
 <!--order details page-->
 <!--This page displays the details of a single order, assuming the viewer has permission to view it-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
@@ -26,7 +27,7 @@
     $shippingInfo = fetch($pdo, "SELECT * FROM orderinfo WHERE infoID=?", [$orderInfo['shippingID']]);
     $orderProducts = fetchAll($pdo, "SELECT * FROM orderproducts WHERE orderID=?", [$oid]);
 
-    //assign to vars now for simplicity down below
+    //assign lots of vars now to make it easier to use down below
     //order vars
     $total = $orderInfo['total'];
     $notes = $orderInfo['notes'];
@@ -72,11 +73,12 @@
             echo "Shipping Cost: $5.00<br>
             Total Paid: $$total<br></div>";
         ?>
-
+            <!--'Spoiler'-type buttons for the order info-->
             <button onclick="document.getElementById('product-info').classList.toggle('hidden');document.getElementById('product-div').classList.toggle('hidden');">Toggle Products</button>
             <button onclick="document.getElementById('shipping-info').classList.toggle('hidden');document.getElementById('shipping-div').classList.toggle('hidden');">Toggle Shipping Info</button>
             <button onclick="document.getElementById('billing-info').classList.toggle('hidden');document.getElementById('billing-div').classList.toggle('hidden');">Toggle Billing Info</button>
             
+            <!--Product Info-->
             <p id="product-info" class="hidden">
                 <div id="product-div" class="hidden">
                 <?php
@@ -96,7 +98,7 @@
             </p>
 
             
-
+            <!--Shipping Info-->
             <p id="shipping-info" class="hidden">
                 <div id="shipping-div" class="hidden">
                 <?php
@@ -108,7 +110,7 @@
             </p>
 
             
-
+            <!--Billing Info--> 
             <p id="billing-info" class="hidden"> 
                 <div id="billing-div" class="hidden">
                 <?php
@@ -135,7 +137,5 @@
                 </div>
             </p>
         </div>
-
     </body>
-
 </html>

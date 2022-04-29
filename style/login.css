@@ -1,3 +1,4 @@
+/*Written by Ryan Sands - z1918476*/
 body {
     background-color: #1a1918;
 }
@@ -54,6 +55,10 @@ p {
     color: red;
     text-align: center;
     font-size: 30px;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
 }
 
 input[type=submit] {

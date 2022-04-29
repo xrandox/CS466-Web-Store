@@ -1,3 +1,4 @@
+<!--Coded by Ryan Sands - z1918476-->
 <style>
 
 body {
@@ -44,7 +45,7 @@ nav .active {
 <?php
     function navBar()
     {
-        $permLevel = $_SESSION['permLevel'];
+        $permLevel = $_SESSION['permLevel']; //permission level so we know what pages to show them
         echo "<nav>
         <ul>
             <li><a href='/CS466-Web-Store/productList.php'>Home</a></li>

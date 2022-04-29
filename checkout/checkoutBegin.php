@@ -1,10 +1,31 @@
 <!--checkout page - confirm purchase-->
 <!--This page is the first checkout page that prompts the user to confirm they want to check out with the products in their cart-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
     require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
+
+    //if they choose to checkout
+    if (isset($_POST['Checkout'])) 
+    {
+        //start the order process on the backend
+        $start = startCheckout($pdo);
+
+        if ($start) //if successful
+        {
+            //send to shipping page
+            header("Location: ./checkoutShipping.php");
+            exit();
+        }
+        else
+        {
+            echo "Checkout failed";
+        }
+        
+
+    }
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +45,13 @@
             <?php
                 $uid = $_SESSION['uid'];
                 
+                //get current cart total
                 getCartTotal($pdo, $uid);
                 $total = $_SESSION['cartTotal'];
 
-
+                //get all products
                 $products = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID=? AND qty>0", [$uid]);
-                if ($products == []) 
+                if ($products == []) //if there are none, stop and say so
                 {
                     echo "<p>Your shopping cart is empty</p>";
                     return;
@@ -37,6 +59,7 @@
 
                 echo "<p>Check out with the following items?</p>";
 
+                //loop through to show all products
                 foreach ($products as $product)
                 {
                     echo "<div class='product'>";
@@ -60,25 +83,4 @@
     </body>
 
 </html>
-
-<?php
-    if (isset($_POST['Checkout'])) 
-    {
-        //start the order process on the backend
-        $start = startCheckout($pdo);
-
-        if ($start)
-        {
-            //send to shipping page
-            header("Location: ./checkoutShipping.php");
-            exit();
-        }
-        else
-        {
-            echo "Checkout failed";
-        }
-        
-
-    }
-?>
 

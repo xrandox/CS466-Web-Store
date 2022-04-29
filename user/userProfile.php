@@ -1,9 +1,26 @@
 <!--user profile page-->
 <!--This page displays the users basic info and links to various other pages-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
     require_once("../util/sqlFunc.php");
+
+    if(isset($_POST['addEmail']))
+    {
+        //try to update the email
+        $stmt = execute($pdo, "UPDATE users SET email=? WHERE userID=?", [$_POST['email'], $_SESSION['uid']]);
+        
+        if($stmt)
+        {
+            //if success, refresh the page
+            header("refresh: 0");
+        }
+        else
+        {
+            echo "There was a problem adding your email. Contact the owner or try again later";
+        }
+    }
 
     $uid = $_SESSION['uid'];
 
@@ -57,7 +74,7 @@
                     <a href='./outstandingOrders.php'><button type='button'>Order Fulfillment</button><a/><br>";
                 }
 
-                //if owner, show inventory page
+                //if owner, show inventory page and order history
                 if ($_SESSION['permLevel']>1)
                 {
                     echo "<h3>Owner Only:</h3>
@@ -68,25 +85,4 @@
             ?>
         </div>
     </body>
-
 </html>
-
-<?php
-
-    if(isset($_POST['addEmail']))
-    {
-        //try to update the email
-        $stmt = execute($pdo, "UPDATE users SET email=? WHERE userID=?", [$_POST['email'], $_SESSION['uid']]);
-        
-        if($stmt)
-        {
-            //if success, refresh the page
-            header("refresh: 0");
-        }
-        else
-        {
-            echo "There was a problem adding your email. Contact the owner or try again later";
-        }
-    }
-
-?>

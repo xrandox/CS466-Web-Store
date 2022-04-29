@@ -1,4 +1,5 @@
-/*File for the database CREATE scripts*/
+/*File for the database CREATE scripts
+Written by Ryan Sands - z1918476 */
 
 /*order info table - holds shipping and billing info for an order*/
 CREATE TABLE IF NOT EXISTS orderinfo (

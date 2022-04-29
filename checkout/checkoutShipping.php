@@ -1,10 +1,36 @@
 <!--checkout page - shipping info-->
 <!--This is the second checkout page where the user adds their shipping info-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
     require_once("../util/checkoutUtil.php");
     require_once("../util/sqlFunc.php");
+
+    if(isset($_POST['Checkout'])) 
+    {
+        $name = $_POST['name'];
+        $street = $_POST['street'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zip = $_POST['zip'];
+        $isBilling = $_POST['alsoBilling'];
+
+        //if shipping info is shared with billing, flip the bool
+        if ($isBilling) { $_SESSION['shippingIsBilling'] = true; }
+
+        //insert statement
+        $stmt = execute($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
+        //on success
+        if ($stmt)
+        {
+            //save the shipping id
+            $_SESSION['shippingID'] = getInfoID($pdo, $name);
+            //continue to next checkout page
+            header("Location: ./checkoutBilling.php");
+            exit();
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,33 +66,3 @@
         </form>
     </body>
 </html>
-
-
-<?php
-    if(isset($_POST['Checkout'])) 
-    {
-        $name = $_POST['name'];
-        $street = $_POST['street'];
-        $city = $_POST['city'];
-        $state = $_POST['state'];
-        $zip = $_POST['zip'];
-        $isBilling = $_POST['alsoBilling'];
-
-        //if shipping info is shared with billing, flip the bool
-        if ($isBilling) { $_SESSION['shippingIsBilling'] = true; }
-
-        //insert statement
-        $stmt = execute($pdo, "INSERT INTO orderinfo (recipientName, street, city, stateAbbr, zip) VALUES (?,?,?,?,?)", [$name, $street, $city, $state, $zip]);
-        //on success
-        if ($stmt)
-        {
-            //save the shipping id
-            $_SESSION['shippingID'] = getOrderID($pdo, $name);
-            //continue to next checkout page
-            header("Location: ./checkoutBilling.php");
-            exit();
-        }
-    }
-?>
-
-
