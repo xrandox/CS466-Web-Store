@@ -1,8 +1,8 @@
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("/creds.php");
     require_once("/sessionStart.php");
     require_once("/sqlFunc.php");
-
 
     //array of state abbreviations for address
     $states = array( 
@@ -15,6 +15,7 @@
     //function start checkout process
     function startCheckout($pdo) 
     {
+        //reset/set some variables
         $_SESSION['shippingIsBilling'] = false;
         $total = $_SESSION['cartTotal'];
         $uid = $_SESSION['uid'];
@@ -28,13 +29,13 @@
             //get all orders from user
             $rows = fetchAll($pdo, "SELECT orderID FROM orders WHERE userID=?", [$uid]);
 
-            //get the latest order from the user
+            //get the id of the latest order from the user, set that as active oid
             $ordernum = count($rows) - 1;
             $thisOrder = $rows[$ordernum];
             $_SESSION['oid'] = $thisOrder['orderID'];
             $oid = $_SESSION['oid'];
 
-            //add shopping cart to orderproducts table
+            //add shopping cart products to orderproducts table
             $stmt = execute($pdo, "INSERT INTO orderproducts (prodID, qty, orderID) SELECT prodID, qty, ? FROM shoppingcart WHERE userID=? and qty > 0", [$oid, $uid]);
 
             if($stmt)
@@ -52,34 +53,35 @@
 
     }
 
-    //function to get the newest orderID
-    function getOrderID($pdo, $name)
+    //function to get the ID of the newest infoID
+    function getInfoID($pdo, $name)
     {
+        //fetch all info with recipients name
         $rows = fetchAll($pdo, "SELECT infoID FROM orderInfo WHERE recipientName=?", [$name]);
+        //select the last one
         $infonum = count($rows) - 1;
+        //return that info id
         return $rows[$infonum]['infoID'];
     }
 
-    //function to total up products in the shopping cart
+    //function to total of products in $uid's shopping cart
     function getCartTotal($pdo, $uid)
     {
-
-        //get cart products
+        //fetch cart products
         $rows = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID=?", [$uid]);
 
         $total = 0;
 
-        foreach ($rows as $result)
+        foreach ($rows as $result)//for each product in the cart, multiply the quantity in the cart by the price of the product
         {
             $id = $result['prodID'];
             $qty = $result['qty'];
 
-            //get price from product table
             $price = fetch($pdo, "SELECT price FROM products WHERE prodID=?", [$id])['price'];
 
             $total += ($price * $qty);
         }
-
+        //set the session variable...hindsight, idk why i didnt just return but lazy to change now
         $_SESSION['cartTotal'] = $total;
         return;
     }

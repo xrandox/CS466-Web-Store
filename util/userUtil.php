@@ -1,3 +1,4 @@
+<!--Coded by Ryan Sands - z1918476-->
 <!--user utilities-->
 <style>
 .smallcontainer {
@@ -63,10 +64,10 @@ a {
         }
     }
 
-    //lists all orders given an array of orders
+    //lists all orders, given an array of orders
     function listOrders($orders)
     {
-        //if it's empty, there's nothing to list
+        //if array is empty, there's nothing to list
         if ($orders == []) 
         {
             echo "<div class='smallcontainer'><p>No orders to show</p></div>";

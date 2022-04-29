@@ -1,5 +1,6 @@
 <!--user orders page-->
 <!--This page shows all of a users orders-->
+<!--Coded by Ryan Sands - z1918476-->
 <?php
     require_once("../util/creds.php");
     require_once("../util/sessionStart.php");
@@ -7,7 +8,7 @@
     require_once("../util/userUtil.php");
 
     $uid = $_SESSION['uid'];
-
+    //fetch user orders
     $userOrders = fetchAll($pdo, "SELECT * FROM orders WHERE userID=? AND orderStatus>0", [$uid]);
 
 ?>

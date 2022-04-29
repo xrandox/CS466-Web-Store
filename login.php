@@ -1,45 +1,11 @@
+<!--Coded by Ryan Sands - z1918476-->
 <!--login page-->
-<!DOCTYPE html>
-<html>
-
-    <head>
-        <link rel='stylesheet' href='./style/login.css'/>
-        <title>Web Store - Login</title>
-    </head>
-
-    <body>
-        <form action="" method="post">
-            <h3>Login</h3>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Enter your username..." required/>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter your password..." required/>
-            <input type="submit" name="Login" value="Login"/>
-            <input type="submit" name="Register" value="Register"/>
-        </form>
-    </body>
-
-</html>
-
-<style>
-p {
-    color: red;
-    text-align: center;
-    font-size: 30px;
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    width:100%;
-}
-</style>
-
 <?php
     require_once("./util/creds.php");
     require_once("./util/sqlFunc.php");
     require_once("./util/sessionStart.php");
 
 
-    //login code
     if (isset($_POST['Login'])) 
     {
         $username = $_POST['username'];
@@ -52,11 +18,9 @@ p {
         if($result == false)
         {
             echo("<p>Either account doesn't exist or you entered an incorrect username or password</p>");
-            return;
         }
         else //otherwise log them in
         {
-            echo("Login successful");
             //set session variables
             $_SESSION['uid'] = $result['userID'];
             if ($result['isOwner'] == 1) $_SESSION['permLevel'] = 2;
@@ -87,21 +51,41 @@ p {
             //if success
             if($stmt)
             {
-                echo("<p>Registered successfully!</p>");
+                echo("<body style='background-color:#1a1918;'><p style='font-family:Consolas;color:#ffffff;text-align:center;'>Registered successfully! Logging you in automatically in 3 seconds...</p>");
                 $result = fetch($pdo, "SELECT * FROM users WHERE username=?", [$username]);
-
 
                 //get userid session variable
                 $_SESSION['uid'] = $result['userID'];
 
                 //redirect to productList
-                header("Location: ./index.php");
+                header("Refresh: 3; ./productList.php");
+                exit();
             }
         }
         else 
         {
             echo("<p>Registration failed: Username already exists</p>");
-            return;
         }
     }
 ?>
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel='stylesheet' href='./style/login.css'/>
+        <title>Web Store - Login</title>
+    </head>
+
+    <body>
+        <form action="" method="post">
+            <h3>Login</h3>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Enter your username..." required/>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Enter your password..." required/>
+            <input type="submit" name="Login" value="Login"/>
+            <input type="submit" name="Register" value="Register"/>
+        </form>
+    </body>
+</html>
