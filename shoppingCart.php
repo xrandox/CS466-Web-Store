@@ -23,7 +23,7 @@ if(isset($_POST["update"]))
     {
         //using execute from sqlFunc
         $stmt = execute($pdo, "UPDATE shoppingcart SET qty=? WHERE prodID=?", [$_POST["qtyChange"], $pidToUpdate]);
-        $stmt2 =  execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable+? WHERE prodID=?", [$diff, $pidToUpdate]);
+        $stmt2 = execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable+? WHERE prodID=?", [$diff, $pidToUpdate]);
 
         //if either fails
         if(!$stmt || !$stmt2)
