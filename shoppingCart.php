@@ -56,6 +56,7 @@
                 $prodName = $prodInfo['prodName'];
                 $price = (float) $qty * $prodInfo['price'];
                 
+                
         ?>
 <!-- Form the Shopping Cart Table-->
                 <tr>
@@ -68,20 +69,33 @@
                 </td>
                 <td>
                     <form method='POST'>
-                        <input type="button" name="removeit" value="Remove Item"/>
+                        <a href='shoppingCart.php'><input type="submit" name="removeit" value="Remove"/>
                 </tr>
         <?php
+                $pid = $product['prodID'];
+                
+                if(isset($_POST["removeit"]))
+                {
+                    $rp = $pdo->prepare("DELETE FROM shoppingCart WHERE prodID = :pd;");
+                    $rs = $rp ->execute(array(':pd' => $pid));
+                    
+                }
+                
+                if(isset($_POST["qtyChange"]))
+                {
+                    
+                }
             }
         ?>    
     
-  
     </tbody>
 </table>
 
 <p>SubTotal: $<?php echo $total?></p>
+<br>
+<a href="shoppingCart.php"><button type='button'>Update Cart</button></a>
 <a href='./productList.php'><button type='button'>Back to Shopping</button></a>
-
 </body>
-
 </html>
+
 
