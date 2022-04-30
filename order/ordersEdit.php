@@ -69,7 +69,7 @@
 
         if(isset($_POST["submit"]))
         {
-            if ($_POST["shipNum"] != "")
+            if ($_POST["shipNum"] != "" && is_numeric($_POST["shipNum"]))
             {
                 $rs = $pdo->prepare("UPDATE orders SET shippingNumber = :sn, orderStatus = :st, notes = :n WHERE orderID = :o;");
                 $rs->execute(array('sn' => $_POST["shipNum"], 'st' => $_POST["status"], ':n' => $_POST["notes"], ':o' => $_GET['orderID']));
@@ -87,7 +87,7 @@
             }
             else
             {
-                echo 'Could not submit form. The order must have a Shipping ID!';
+                echo 'Could not submit form. The order must have a valid Shipping ID!';
             }
             
         }
