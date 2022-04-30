@@ -112,5 +112,6 @@ if(isset($_POST["update"]))
         <p>SubTotal: $<?php echo $total?></p>
         <br>
         <a href='./productList.php'><button type='button'>Back to Shopping</button></a>
+        <a href='./checkout/checkoutBegin.php'><button type='button'>Proceed to Checkout</button></a>
     </body>
 </html>
