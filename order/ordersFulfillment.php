@@ -43,8 +43,10 @@
     ?>
         <div>
             <form action="" method="post">
-                <a href="ordersOutstanding.php"><button type="button">Return to Orders</button></a> 
+                <a href="ordersOutstanding.php"><button type="button">Return to Orders</button></a>
+                <a href="ordersEdit.php<?php echo "?orderID=" . $order['orderID']?>"><button type="button">Edit Order</button></a><br>
             </form>
+            
         </div>
 
         <div class="order">
@@ -78,11 +80,8 @@
 
                     echo "Order Status: " . $statusString;
                ?></p>
-            <form method="post">
-                <label for="notes">Notes:</label>
-                <input type="text" name="notes" value="<?php echo $order['notes']?>"></input>
-            </form>    
-
+            
+            <p><?php echo "Notes: " . $order['notes']; ?></p>
         </div>
 
         <?php
@@ -101,7 +100,7 @@
 
         }
 
-        if(isset($_POST["notes"]))
+        /*if(isset($_POST["notes"]))
         {
             $rs = $pdo->prepare("UPDATE orders SET notes = :n WHERE orderID = :o;");
             $rs->execute(array(':n' => $_POST["notes"], ':o' => $_GET['orderID']));
@@ -115,7 +114,7 @@
             {
                 echo 'Did not update notes.';
             }
-        }
+        }*/
     ?>   
 
 </body>
