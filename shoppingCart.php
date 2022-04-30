@@ -69,8 +69,10 @@ if(isset($_POST["update"]))
             <thead>
                 <tr>
                     <th><b>Product</b></th>
-                    <th><b>Price</b></th>
+                    <th><b>Item Price</b></th>
+                    <th><b>Total Price</b></th>
                     <th><b>Quantity</b></th>
+                    <th><b>Update/Remove</b></th>
                 </tr>
             </thead>
 
@@ -82,7 +84,8 @@ if(isset($_POST["update"]))
                     $qty = $product['qty'];
                     $prodInfo = fetch($pdo, "SELECT * FROM products WHERE prodID = ?", [$product['prodID']]);
                     $prodName = $prodInfo['prodName'];
-                    $price = (float) $qty * $prodInfo['price'];
+                    $price = $prodInfo['price'];
+                    $totalprice = (float) $qty * $prodInfo['price'];
                     $pid = $product['prodID'];
                                 
                 ?>
@@ -90,7 +93,8 @@ if(isset($_POST["update"]))
                 <!-- Form the Shopping Cart Table-->
                 <tr>
                 <td><?php echo "$prodName"; ?></td>
-                <td><?php echo "$$price";?></td>
+                <td><?php echo "$price"; ?></td>
+                <td><?php echo "$$totalprice";?></td>
                 <td>
                     <!--Condensed forms to 1, set min to 0, added hidden value to pass pid and the original qty-->
                     <form method='POST'>
