@@ -1,10 +1,12 @@
 <?php
     require_once("./util/creds.php");
     require_once("./util/sessionStart.php");
+    require_once("./util/sqlFunc.php"); //needed for custom execute func
 
     $rs = $pdo->prepare("SELECT * FROM products WHERE prodID = ?;");
     $rs->execute(array($_GET["prodID"]));
     $rows = $rs->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 <html>
 <head>
@@ -48,47 +50,22 @@
         // Check if the qtyWanted input box is set.
         if (isset($_POST["qtyWanted"]))
         {
-            $rs = $pdo->prepare("SELECT * FROM shoppingcart WHERE prodID = :pid && userID = :pu;");
-            $rs->execute(array(':pu' => $uid,':pid' => $pid));
-
-            // If colums were changed, then the item is already in the shopping cart.
-            // In that case, update it to add more.
-            if ($rs->rowCount() > 0)
+            //execute a REPLACE INTO (returns true on success)
+            $stmt = execute($pdo, "REPLACE INTO shoppingCart (userID, prodID, qty) VALUES (?, ?, qty+?)", [$uid, $pid, $_POST["qtyWanted"]]);
+            if ($stmt) //if successfuly, execute an UPDATE for product qty
             {
-                /*
-                    This prepare statement updates the shoppingcart table. It increases
-                    the amount that is already in there to how much the user wants to add,
-                    as long as the total number of products will be less than waht is in
-                    stock.
-                */
-                $rs = $pdo->prepare("UPDATE shoppingcart SET qty = qty + :pw WHERE userID = :pu AND prodID = :pid AND qty + :pw <= (SELECT qtyAvailable FROM products WHERE prodID = :pid);");
-                $success = $rs->execute(array(':pu' => $uid,':pid' => $pid, ':pw' => $_POST["qtyWanted"]));
-
-                // If UPDATE affects any row, then the user successfully added more
-                // of the product to the shopping cart.
-                if($rs->rowCount() > 0)
-                {
-                    echo 'Updated shopping cart.';
-                }
-                else    // Else, the user could not add more of the product to the cart.
-                {
-                    echo 'Could not update the shopping cart.';
-                }
+                $stmt2 = execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable-? WHERE prodID=?", [$pid, $_POST["qtyWanted"]]);
+                if (!$stmt2) 
+                { 
+                    echo "Failed to update product inventory"; 
+                    return; 
+                } //if fail error
             }
-            else    // Else, the item is not in the shopping cart. Add it.
-            {
-                $rs = $pdo->prepare("INSERT INTO shoppingcart (userID, prodID, qty) VALUES ( :pu, :pid, :pw );");
-                $success = $rs->execute(array(':pu' => $uid,':pid' => $pid, ':pw' => $_POST["qtyWanted"]));
-        
-                if($success)
-                {
-                    echo 'Product added to the shopping cart.';
-                }
-                else
-                {
-                    echo 'Could not add product to the shopping cart.';
-                }
-            }
+            else 
+            { 
+                echo "Could not update shopping cart"; 
+                return; 
+            } //if fail error
         }
         
     }
