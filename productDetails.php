@@ -11,6 +11,7 @@
     $uid = $_SESSION['uid'];
     $pid = $_GET['prodID'];
 
+    
     // Check if the qtyWanted input box is set.
     if (isset($_POST["qtyWanted"]))
     {
@@ -69,6 +70,12 @@
 
         <?php
 
+        $cart = fetch($pdo, "SELECT * FROM shoppingcart WHERE userID=? AND prodID=?", [$uid,$pid]);
+        if ($cart != [])
+        {
+            $qtyInCart = $cart['qty'];
+            echo "<p>You currently have $qtyInCart of these in your cart.</p>";
+        }
     }
     ?>  
 </body>
