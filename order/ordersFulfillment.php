@@ -68,7 +68,7 @@
                             $statusString = "Checkout";
                             break;
                         case 1:
-                            $statusString = "Order Success";
+                            $statusString = "Order Placed";
                             break;
                         case 2:
                             $statusString = "Processing";
