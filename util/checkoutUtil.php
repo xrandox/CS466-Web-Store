@@ -57,7 +57,7 @@
     function getInfoID($pdo, $name)
     {
         //fetch all info with recipients name
-        $rows = fetchAll($pdo, "SELECT infoID FROM orderInfo WHERE recipientName=?", [$name]);
+        $rows = fetchAll($pdo, "SELECT infoID FROM orderinfo WHERE recipientName=?", [$name]);
         //select the last one
         $infonum = count($rows) - 1;
         //return that info id
@@ -68,7 +68,7 @@
     function getCartTotal($pdo, $uid)
     {
         //fetch cart products
-        $rows = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID=?", [$uid]);
+        $rows = fetchAll($pdo, "SELECT * FROM shoppingcart WHERE userID=?", [$uid]);
 
         $total = 0;
 

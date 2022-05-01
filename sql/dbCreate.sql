@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS orders (
 	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
 	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID),
     /* check and make sure someone doesnt manage to checkout without creating a billing/shipping ID for order */
-    CONSTRAINT preventSuccess CHECK ( NOT (orderStatus > 0 AND billingID IS NULL OR shippingID IS NULL)),
+    CONSTRAINT preventSuccess CHECK ( NOT (orderStatus > 0 AND (billingID IS NULL OR shippingID IS NULL))),
     /* check and make sure product is not shipped without giving shipping number*/
     CONSTRAINT preventShipping CHECK ( NOT (orderStatus > 2 AND shippingNumber IS NULL))
 );

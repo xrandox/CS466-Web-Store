@@ -71,7 +71,7 @@
                 if ($_SESSION['permLevel']>0)
                 {
                     echo "<h3>Employee Only:</h3>
-                    <a href='./outstandingOrders.php'><button type='button'>Order Fulfillment</button><a/><br>";
+                    <a href='../order/ordersOutstanding.php'><button type='button'>Order Fulfillment</button><a/><br>";
                 }
 
                 //if owner, show inventory page and order history

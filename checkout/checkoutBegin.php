@@ -19,12 +19,6 @@
             header("Location: ./checkoutShipping.php");
             exit();
         }
-        else
-        {
-            echo "Checkout failed";
-        }
-        
-
     }
 ?>
 
@@ -50,7 +44,7 @@
                 $total = $_SESSION['cartTotal'];
 
                 //get all products
-                $products = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID=? AND qty>0", [$uid]);
+                $products = fetchAll($pdo, "SELECT * FROM shoppingcart WHERE userID=? AND qty>0", [$uid]);
                 if ($products == []) //if there are none, stop and say so
                 {
                     echo "<p>Your shopping cart is empty</p>";
@@ -76,7 +70,7 @@
             ?>
 
             <form action="" method="post">
-                <a href="../productList.php"><button type="button">Back to Shopping</button><a/> 
+                <a href="../productList.php"><button type="button">Back to Shopping</button></a> 
                 <input type="submit" name="Checkout" value="Checkout"/>
             </form>
         </div>

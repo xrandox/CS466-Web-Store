@@ -48,16 +48,15 @@ nav .active {
         $permLevel = $_SESSION['permLevel']; //permission level so we know what pages to show them
         echo "<nav>
         <ul>
-            <li><a href='/CS466-Web-Store/productList.php'>Home</a></li>
-            <li><a href='/CS466-Web-Store/user/userProfile.php'>User Profile</a></li>
-            <li><a href='/CS466-Web-Store/shoppingCart.php'>Shopping Cart</a></li>
-            <li><a href='/CS466-Web-Store/user/userOrders.php'>Your Orders</a></li>
-            <li><a href='/CS466-Web-Store/index.php'>Index</a></li>
-            <li style='float:right'><a href='/CS466-Web-Store/login.php'>Logout</a></li>";
-        if ($permLevel > 0) echo "<li style='float:right'><a href='/CS466-Web-Store/order/ordersOutstanding.php'>Order Fulfillment</a></li>";
-        if ($permLevel == 2) echo "<li style='float:right'><a href='/CS466-Web-Store/productInventory.php'>Inventory</a></li>
-        <li style='float:right'><a href='/CS466-Web-Store/user/allOrderHistory.php'>Full Order History</a></li>";
+            <li><a href='/~z1918476/CS466-Web-Store/productList.php'>Product List</a></li>
+            <li><a href='/~z1918476/CS466-Web-Store/user/userProfile.php'>User Profile</a></li>
+            <li><a href='/~z1918476/CS466-Web-Store/shoppingCart.php'>Shopping Cart</a></li>
+            <li><a href='/~z1918476/CS466-Web-Store/user/userOrders.php'>Your Orders</a></li>
+            <li><a href='/~z1918476/CS466-Web-Store/index.php'>Index</a></li>
+            <li style='float:right'><a href='/~z1918476/CS466-Web-Store/login.php'>Logout</a></li>";
+        if ($permLevel > 0) echo "<li style='float:right'><a href='/~z1918476/CS466-Web-Store/order/ordersOutstanding.php'>Order Fulfillment</a></li>";
+        if ($permLevel == 2) echo "<li style='float:right'><a href='/~z1918476/CS466-Web-Store/productInventory.php'>Inventory</a></li>
+        <li style='float:right'><a href='/~z1918476/CS466-Web-Store/user/allOrderHistory.php'>Full Order History</a></li>";
         echo "</ul></nav>";
     }
-
 ?>

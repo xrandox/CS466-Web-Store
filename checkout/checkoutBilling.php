@@ -21,7 +21,7 @@
         if($_SESSION['shippingIsBilling'])
         {
             //try to update with billing info
-            $stmt = execute($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
+            $stmt = execute($pdo, "UPDATE orderinfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
             //on success
             if($stmt)
             {
@@ -49,13 +49,12 @@
             //get the infoID for the billing info
             $billingID = getInfoID($pdo, $name);
             //try to update the card information
-            $stmt2 = execute($pdo, "UPDATE orderInfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
+            $stmt2 = execute($pdo, "UPDATE orderinfo SET isBilling=1, cardNumber=?, cvc=?, expMon=?, expYear=? WHERE infoID=?", [$cardNum, $cvc, $expm, $expy, $shipID]);
 
             $stmt3 = execute($pdo, "UPDATE orders SET billingID=?, shippingID=?, total=?, orderStatus=1 WHERE orderID=?", [$shipID, $shipID, $total, $oid]);
             //on success
             if($stmt3)
             {
-
                 //send to checkout complete page
                 header("Location: ./checkoutComplete.php");
                 exit();
