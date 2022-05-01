@@ -51,9 +51,10 @@
         if (isset($_POST["qtyWanted"]))
         {
             //execute a REPLACE INTO (returns true on success)
-            $stmt = execute($pdo, "REPLACE INTO shoppingCart (userID, prodID, qty) VALUES (?, ?, qty+?)", [$uid, $pid, $_POST["qtyWanted"]]);
+            $stmt = execute($pdo, "REPLACE INTO shoppingCart (userID, prodID, qty) VALUES (:u, :p, qty+:q)", [':u' => $uid, ':p' => $pid, ':q' => $_POST["qtyWanted"]]);
             if ($stmt) //if successfuly, execute an UPDATE for product qty
             {
+                header('refresh:0');
                 $stmt2 = execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable-:qty WHERE prodID=:pid", [':pid' => $pid, ':qty' => $_POST["qtyWanted"]]);
                 if (!$stmt2) 
                 { 
