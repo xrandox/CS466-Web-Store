@@ -93,7 +93,7 @@ if(isset($_POST["update"]))
                 <!-- Form the Shopping Cart Table-->
                 <tr>
                 <td><?php echo "$prodName"; ?></td>
-                <td><?php echo "$price"; ?></td>
+                <td><?php echo "$$price"; ?></td>
                 <td><?php echo "$$totalprice";?></td>
                 <td>
                     <!--Condensed forms to 1, set min to 0, added hidden value to pass pid and the original qty-->
