@@ -54,7 +54,7 @@
             $stmt = execute($pdo, "REPLACE INTO shoppingCart (userID, prodID, qty) VALUES (?, ?, qty+?)", [$uid, $pid, $_POST["qtyWanted"]]);
             if ($stmt) //if successfuly, execute an UPDATE for product qty
             {
-                $stmt2 = execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable-? WHERE prodID=?", [$pid, $_POST["qtyWanted"]]);
+                $stmt2 = execute($pdo, "UPDATE products SET qtyAvailable=qtyAvailable-:qty WHERE prodID=:pid", [':pid' => $pid, ':qty' => $_POST["qtyWanted"]]);
                 if (!$stmt2) 
                 { 
                     echo "Failed to update product inventory"; 
