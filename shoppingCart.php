@@ -53,7 +53,7 @@ if(isset($_POST["update"]))
             getCartTotal($pdo, $uid);
             $total = $_SESSION['cartTotal'];
 
-            $products = fetchAll($pdo, "SELECT * FROM shoppingCart WHERE userID = ? AND qty > 0", [$uid]);
+            $products = fetchAll($pdo, "SELECT * FROM shoppingcart WHERE userID = ? AND qty > 0", [$uid]);
 
             if($products == [])
             {

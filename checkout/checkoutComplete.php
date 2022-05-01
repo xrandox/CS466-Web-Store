@@ -37,7 +37,7 @@
                     $productInfo = fetch($pdo, "SELECT * FROM products WHERE prodID=?", [$product['prodID']]);
                     $name = $productInfo['prodName'];
                     $price = $qty * $productInfo['price'];
-                    echo "Product: $name<br>Quantity: $qty<br>Total Price: $price</div>";
+                    echo "Product: $name<br>Quantity: $qty<br>Total Price: $$price</div>";
                 }
                 echo "<hr>Shipping Cost: $5.00<br>";
                 $total = fetch($pdo, "SELECT total FROM orders WHERE orderID=?", [$oid])['total'];

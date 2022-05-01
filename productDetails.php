@@ -15,7 +15,7 @@
     if (isset($_POST["qtyWanted"]))
     {
         //execute a REPLACE INTO (returns true on success)
-        $stmt = execute($pdo, "INSERT INTO shoppingCart (userID, prodID, qty) VALUES (:u, :p, :q) ON DUPLICATE KEY UPDATE qty=qty+:q", [':u' => $uid, ':p' => $pid, ':q' => $_POST["qtyWanted"]]);
+        $stmt = execute($pdo, "INSERT INTO shoppingcart (userID, prodID, qty) VALUES (:u, :p, :q) ON DUPLICATE KEY UPDATE qty=qty+:q", [':u' => $uid, ':p' => $pid, ':q' => $_POST["qtyWanted"]]);
         if ($stmt) //if successfuly, execute an UPDATE for product qty
         {
             header('refresh:0');
