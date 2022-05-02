@@ -71,7 +71,7 @@
         <?php
 
         $cart = fetch($pdo, "SELECT * FROM shoppingcart WHERE userID=? AND prodID=?", [$uid,$pid]);
-        if ($cart != [])
+        if ($cart != [] && $cart['qty'] != 0)
         {
             $qtyInCart = $cart['qty'];
             echo "<p>You currently have $qtyInCart of these in your cart.</p>";
