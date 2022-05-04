@@ -31,12 +31,8 @@ CREATE TABLE IF NOT EXISTS users (
 	email VARCHAR(255),
 	isEmployee BOOLEAN DEFAULT 0,
 	isOwner BOOLEAN DEFAULT 0,
-	/*billing/shipping can be left out, just added them in case we want to save info down the line*/
-	billingID INT,
-	shippingID INT,
 	PRIMARY KEY (userID),
-	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID),
-	FOREIGN KEY (shippingID) REFERENCES orderinfo (infoID)
+	FOREIGN KEY (billingID) REFERENCES orderinfo (infoID)
 );
 
 /*products table - holds all product info + inventory*/
