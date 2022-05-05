@@ -71,8 +71,8 @@ if(isset($_POST["update"]))
                     <th><b>Product</b></th>
                     <th><b>Item Price</b></th>
                     <th><b>Total Price</b></th>
-                    <th><b>Quantity</b></th>
-                    <th><b>Update/Remove</b></th>
+                    <th><b>Qty(set to 0 to remove)</b></th>
+                    <th><b>Update</b></th>
                 </tr>
             </thead>
 
