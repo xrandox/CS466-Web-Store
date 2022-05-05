@@ -1,0 +1,40 @@
+body {
+    background-color: #1a1918;
+}
+
+body * {
+    font-family: 'Consolas',sans-serif; 
+}
+
+h1,p {
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+button {
+    margin-left: 10px;
+    border: 1px solid black;
+}
+
+input[type=submit] {
+    border: 1px solid black;
+}
+
+button:hover,input[type=submit]:hover {
+    background-color: #1a1918;
+    color: white;
+}
+
+table {
+    border: 1px solid white;
+    margin-left: 10px;
+    border-spacing:2px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th,td {
+    color: #ffffff;
+    border: 1px solid white;
+    padding: 10px;
+}

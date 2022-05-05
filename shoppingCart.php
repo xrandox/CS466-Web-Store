@@ -40,11 +40,12 @@ if(isset($_POST["update"]))
 <html>
     <head>
         <title>Shopping Cart</title>
+        <link rel='stylesheet' href='./style/cart.css'/>
     </head>
 
     <body>
         <?php require_once("./style/nav.php"); navBar(); //adds navbar to top of page ?> 
-        <h1 style='margin-top:65px;font-family:Consolas;text-align:center;'>Shopping Cart</h1> <!--Added styling here to fit with navbar-->
+        <h1 style='margin-top:65px;'>Shopping Cart</h1> <!--Added styling here to fit with navbar-->
 
         <?php
             $uid = $_SESSION['uid'];
@@ -65,14 +66,14 @@ if(isset($_POST["update"]))
 
 
         <!--Shopping table-->
-        <table border=1 cellspacing=1>
+        <table>
             <thead>
                 <tr>
                     <th><b>Product</b></th>
                     <th><b>Item Price</b></th>
                     <th><b>Total Price</b></th>
                     <th><b>Quantity</b></th>
-                    <th><b>Update/Remove</b></th>
+                    <th><b>Update</b></th>
                 </tr>
             </thead>
 
